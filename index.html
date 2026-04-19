@@ -8,347 +8,156 @@
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     :root {
-      --bg:         #0d0d0d;
-      --surface:    #141414;
-      --surface2:   #1c1c1c;
-      --border:     #262626;
-      --border2:    #333333;
-      --green:      #2ec45a;
-      --green-dim:  #1a7a38;
-      --white:      #ffffff;
-      --text:       #e0e0e0;
-      --muted:      #5c5c5c;
-      --muted2:     #888888;
-      --gold:       #d4a843;
-      --gold-dim:   #7a5c1a;
-      --silver:     #9ca3af;
-      --bronze:     #b07230;
-      --gem:        #8b5cf6;
-      --radius:     10px;
+      --bg:       #0d0d0d;
+      --surface:  #111111;
+      --surface2: #181818;
+      --border:   #1e1e1e;
+      --border2:  #2a2a2a;
+      --green:    #2ec45a;
+      --green-d:  #1a6e35;
+      --white:    #f0f0f0;
+      --text:     #c8c8c8;
+      --muted:    #4a4a4a;
+      --muted2:   #777;
+      --gold:     #c9962a;
+      --gold-bg:  rgba(201,150,42,.08);
+      --gold-br:  rgba(201,150,42,.35);
+      --silver:   #8a9199;
+      --silver-bg:rgba(138,145,153,.06);
+      --silver-br:rgba(138,145,153,.3);
+      --bronze:   #9e6a38;
+      --bronze-bg:rgba(158,106,56,.06);
+      --bronze-br:rgba(158,106,56,.3);
+      --gem:      #7c3aed;
+      --gem-bg:   rgba(124,58,237,.07);
+      --gem-br:   rgba(124,58,237,.3);
+      --r:        8px;
     }
 
-    body {
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-      background: var(--bg);
-      color: var(--text);
-      line-height: 1.5;
-    }
+    body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; background: var(--bg); color: var(--text); line-height: 1.5; }
     a { color: inherit; text-decoration: none; }
-
-    /* ── LAYOUT ── */
-    .container { max-width: 900px; margin: 0 auto; }
-    section { padding: 56px 24px; }
-
-    .section-eyebrow {
-      font-size: 10px; font-weight: 700;
-      letter-spacing: 3px; text-transform: uppercase;
-      color: var(--green); margin-bottom: 8px;
-    }
-    .section-title {
-      font-size: 1.5rem; font-weight: 800;
-      color: var(--white); letter-spacing: -0.5px; margin-bottom: 4px;
-    }
-    .section-sub { color: var(--muted2); font-size: 0.85rem; margin-bottom: 32px; }
+    .wrap { max-width: 780px; margin: 0 auto; }
 
     /* ── HERO ── */
-    .hero {
-      border-bottom: 1px solid var(--border);
-      padding: 60px 24px 52px;
-      text-align: center;
-    }
-    .dice-logo {
-      display: inline-flex; align-items: center; justify-content: center;
-      width: 72px; height: 72px;
-      background: var(--green); border-radius: 18px;
-      margin-bottom: 24px; font-size: 2.4rem; line-height: 1;
-    }
-    .hero-eyebrow {
-      font-size: 10px; font-weight: 700;
-      letter-spacing: 3px; text-transform: uppercase;
-      color: var(--muted2); margin-bottom: 12px;
-    }
-    .hero h1 {
-      font-size: clamp(2.2rem, 7vw, 3.6rem);
-      font-weight: 900; letter-spacing: -2px; line-height: 1;
-      color: var(--white); margin-bottom: 16px;
-    }
-    .hero h1 span { color: var(--green); }
-    .hero-meta {
-      display: flex; align-items: center; justify-content: center;
-      gap: 12px; flex-wrap: wrap;
-      font-size: 0.9rem; color: var(--muted2);
-    }
-    .hero-edition { font-weight: 600; color: var(--text); }
-    .status-badge {
-      display: inline-flex; align-items: center; gap: 6px;
-      padding: 4px 12px;
-      border-radius: 999px;
-      font-size: 0.75rem; font-weight: 700;
-      letter-spacing: 0.5px;
-    }
-    .status-badge.open {
-      background: rgba(46,196,90,.12);
-      color: var(--green);
-      border: 1px solid rgba(46,196,90,.25);
-    }
-    .status-badge.closed {
-      background: rgba(255,255,255,.05);
-      color: var(--muted2);
-      border: 1px solid var(--border);
-    }
-    .status-dot {
-      width: 6px; height: 6px; border-radius: 50%;
-      background: currentColor;
-    }
-    .status-badge.open .status-dot {
-      animation: blink 1.6s ease-in-out infinite;
-    }
-    @keyframes blink { 0%,100%{opacity:1} 50%{opacity:.2} }
-    .hero-sep { color: var(--border2); }
+    .hero { border-bottom: 1px solid var(--border); padding: 52px 24px 44px; text-align: center; }
+    .logo { display: inline-flex; align-items: center; justify-content: center; width: 64px; height: 64px; background: var(--green); border-radius: 16px; font-size: 2rem; line-height: 1; margin-bottom: 20px; }
+    .eyebrow { font-size: 10px; font-weight: 700; letter-spacing: 3px; text-transform: uppercase; color: var(--muted2); margin-bottom: 10px; }
+    .hero h1 { font-size: clamp(2rem, 6vw, 3.2rem); font-weight: 900; letter-spacing: -2px; color: var(--white); margin-bottom: 14px; }
+    .hero h1 em { color: var(--green); font-style: normal; }
+    .hero-meta { display: flex; align-items: center; justify-content: center; gap: 10px; flex-wrap: wrap; font-size: 0.85rem; color: var(--muted2); }
+    .badge-open { display: inline-flex; align-items: center; gap: 5px; padding: 3px 10px; border-radius: 999px; font-size: 0.72rem; font-weight: 700; background: rgba(46,196,90,.1); color: var(--green); border: 1px solid rgba(46,196,90,.2); }
+    .badge-closed { display: inline-flex; align-items: center; gap: 5px; padding: 3px 10px; border-radius: 999px; font-size: 0.72rem; font-weight: 700; background: rgba(255,255,255,.05); color: var(--muted2); border: 1px solid var(--border2); }
+    .dot-live { width: 6px; height: 6px; border-radius: 50%; background: currentColor; animation: pulse 1.6s ease-in-out infinite; }
+    @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:.25} }
+    .sep { color: var(--border2); }
 
     /* ── STATS BAR ── */
-    .stats-bar {
-      border-top: 1px solid var(--border);
-      border-bottom: 1px solid var(--border);
-      background: var(--surface);
-      padding: 0 24px;
-    }
-    .stats-bar-inner {
-      max-width: 900px; margin: 0 auto;
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-    }
-    .stat-item {
-      padding: 28px 24px; text-align: center;
-    }
-    .stat-item + .stat-item { border-left: 1px solid var(--border); }
-    .stat-num {
-      display: block;
-      font-size: clamp(2rem, 5vw, 2.8rem);
-      font-weight: 900; letter-spacing: -2px;
-      color: var(--green); line-height: 1; margin-bottom: 6px;
-    }
-    .stat-label {
-      font-size: 0.68rem; font-weight: 700;
-      text-transform: uppercase; letter-spacing: 2px;
-      color: var(--muted2);
-    }
+    .stats-bar { background: var(--surface); border-bottom: 1px solid var(--border); }
+    .stats-row { display: grid; grid-template-columns: repeat(3,1fr); max-width: 780px; margin: 0 auto; }
+    .stat { padding: 22px 16px; text-align: center; }
+    .stat + .stat { border-left: 1px solid var(--border); }
+    .stat-n { display: block; font-size: clamp(1.8rem,4vw,2.4rem); font-weight: 900; letter-spacing: -1.5px; color: var(--green); line-height: 1; margin-bottom: 4px; }
+    .stat-l { font-size: 0.62rem; font-weight: 700; text-transform: uppercase; letter-spacing: 2px; color: var(--muted2); }
 
-    /* ── TOP 10 CARDS ── */
-    .ranking-section { border-top: 1px solid var(--border); }
-    .top10-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(360px, 1fr));
-      gap: 10px;
-      margin-bottom: 48px;
-    }
-    .game-card {
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: var(--radius);
-      padding: 16px;
-      transition: border-color .15s, transform .15s;
-    }
-    .game-card:hover { border-color: var(--border2); transform: translateY(-1px); }
-    .game-card.top1 { border-color: rgba(212,168,67,.5); }
-    .game-card.top2 { border-color: rgba(156,163,175,.4); }
-    .game-card.top3 { border-color: rgba(176,114,48,.4); }
+    /* ── RANKING — single column list ── */
+    .ranking-section { padding: 48px 24px; }
+    .section-tag { font-size: 10px; font-weight: 700; letter-spacing: 3px; text-transform: uppercase; color: var(--green); margin-bottom: 6px; }
+    .section-h { font-size: 1.4rem; font-weight: 800; color: var(--white); letter-spacing: -.5px; margin-bottom: 4px; }
+    .section-sub { font-size: 0.8rem; color: var(--muted2); margin-bottom: 28px; }
 
-    .card-pos-row {
-      display: flex; align-items: center; gap: 8px;
-      margin-bottom: 12px;
-    }
-    .card-medal { font-size: 1.6rem; line-height: 1; }
-    .card-pos-num {
-      font-size: 1.5rem; font-weight: 900;
-      color: var(--muted); line-height: 1;
-      letter-spacing: -1px;
-    }
-    .game-card.top1 .card-pos-num { color: var(--gold); }
-    .game-card.top2 .card-pos-num { color: var(--silver); }
-    .game-card.top3 .card-pos-num { color: var(--bronze); }
+    .rank-list { display: flex; flex-direction: column; gap: 6px; }
 
-    .card-body { display: flex; gap: 14px; align-items: flex-start; }
+    .rank-item {
+      display: flex; align-items: center; gap: 16px;
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: var(--r); padding: 14px 18px;
+      transition: border-color .15s;
+      position: relative; overflow: hidden;
+    }
+    .rank-item:hover { border-color: var(--border2); }
+    .rank-item.g1 { background: var(--gold-bg);   border-color: var(--gold-br); }
+    .rank-item.g2 { background: var(--silver-bg); border-color: var(--silver-br); }
+    .rank-item.g3 { background: var(--bronze-bg); border-color: var(--bronze-br); }
 
-    .card-thumb {
-      width: 80px; height: 80px;
-      border-radius: 8px; object-fit: cover; flex-shrink: 0;
-    }
-    .card-no-thumb {
-      width: 80px; height: 80px;
-      border-radius: 8px; flex-shrink: 0;
-      background: var(--border);
-      display: flex; align-items: center; justify-content: center;
-      font-size: 1.6rem; color: var(--muted);
-    }
-    .card-info { flex: 1; min-width: 0; }
-    .card-name {
-      font-size: 0.97rem; font-weight: 700; color: var(--white);
-      display: block; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
-    }
-    .card-name:hover { color: var(--green); }
-    .card-year { font-size: 0.72rem; color: var(--muted2); margin-bottom: 10px; }
+    .rank-item.g1::before { content:''; position:absolute; left:0; top:0; bottom:0; width:3px; background:var(--gold); border-radius:var(--r) 0 0 var(--r); }
+    .rank-item.g2::before { content:''; position:absolute; left:0; top:0; bottom:0; width:3px; background:var(--silver); border-radius:var(--r) 0 0 var(--r); }
+    .rank-item.g3::before { content:''; position:absolute; left:0; top:0; bottom:0; width:3px; background:var(--bronze); border-radius:var(--r) 0 0 var(--r); }
 
-    .bar-wrap {
-      height: 3px; background: var(--border);
-      border-radius: 2px; margin-bottom: 8px; overflow: hidden;
+    .rank-pos {
+      font-size: 1.6rem; font-weight: 900; letter-spacing: -1px;
+      min-width: 38px; text-align: center; flex-shrink: 0; line-height: 1;
+      color: var(--muted);
     }
-    .bar-fill {
-      height: 100%; border-radius: 2px;
-      transition: width .6s ease;
-      background: linear-gradient(90deg, var(--green-dim), var(--green));
-    }
-    .game-card.top1 .bar-fill { background: linear-gradient(90deg, var(--gold-dim), var(--gold)); }
-    .game-card.top2 .bar-fill { background: linear-gradient(90deg, #555, var(--silver)); }
-    .game-card.top3 .bar-fill { background: linear-gradient(90deg, #6b3d12, var(--bronze)); }
+    .g1 .rank-pos { color: var(--gold); }
+    .g2 .rank-pos { color: var(--silver); }
+    .g3 .rank-pos { color: var(--bronze); }
 
-    .card-stats {
-      display: flex; align-items: center; gap: 6px; flex-wrap: wrap;
-      font-size: 0.75rem; color: var(--muted2);
-    }
-    .card-pts { font-size: 1.05rem; font-weight: 900; color: var(--white); letter-spacing: -0.5px; }
-    .card-pts-label { font-size: 0.62rem; text-transform: uppercase; letter-spacing: 1px; color: var(--muted); }
-    .stat-sep { color: var(--border2); }
+    .rank-thumb { width: 64px; height: 64px; border-radius: 7px; object-fit: cover; flex-shrink: 0; background: var(--border); }
+    .rank-thumb-empty { width: 64px; height: 64px; border-radius: 7px; flex-shrink: 0; background: var(--border); display: flex; align-items: center; justify-content: center; font-size: 1.4rem; color: var(--muted); }
 
-    /* ── TABLA 11+ ── */
-    .rank-table-wrap { overflow-x: auto; }
-    .rank-table {
-      width: 100%; border-collapse: collapse;
-      font-size: 0.85rem;
-    }
-    .rank-table th {
-      text-align: left; padding: 8px 12px;
-      font-size: 0.65rem; font-weight: 700;
-      text-transform: uppercase; letter-spacing: 1.5px;
-      color: var(--muted); border-bottom: 1px solid var(--border);
-    }
-    .rank-table td {
-      padding: 10px 12px; border-bottom: 1px solid var(--border);
-      vertical-align: middle;
-    }
-    .rank-table tr:last-child td { border-bottom: none; }
-    .rank-table tr:hover td { background: var(--surface); }
-    .tbl-pos { font-size: 0.85rem; font-weight: 700; color: var(--muted2); width: 36px; }
-    .tbl-thumb {
-      width: 36px; height: 36px; border-radius: 5px;
-      object-fit: cover; display: block;
-    }
-    .tbl-no-thumb {
-      width: 36px; height: 36px; border-radius: 5px;
-      background: var(--border);
-      display: flex; align-items: center; justify-content: center;
-      font-size: 0.9rem; color: var(--muted);
-    }
-    .tbl-name { font-weight: 600; color: var(--white); }
-    .tbl-name:hover { color: var(--green); }
-    .tbl-year { font-size: 0.72rem; color: var(--muted2); display: block; }
-    .tbl-pts { font-weight: 800; color: var(--white); }
-    .tbl-mentions { color: var(--muted2); white-space: nowrap; }
-    .tbl-avg { color: var(--muted2); }
-    .tbl-center { text-align: center; }
+    .rank-info { flex: 1; min-width: 0; }
+    .rank-name { font-size: 0.97rem; font-weight: 700; color: var(--white); display: block; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; margin-bottom: 2px; }
+    .rank-name:hover { color: var(--green); }
+    .rank-year { font-size: 0.7rem; color: var(--muted2); margin-bottom: 8px; }
 
-    /* ── HIDDEN GEM ── */
-    .gem-section {
-      background: var(--surface);
-      border-top: 1px solid var(--border);
-      border-bottom: 1px solid var(--border);
-      padding: 40px 24px;
-    }
+    .bar-wrap { height: 3px; background: var(--border2); border-radius: 2px; overflow: hidden; }
+    .bar-fill { height: 100%; border-radius: 2px; }
+    .g1 .bar-fill { background: linear-gradient(90deg, #7a5010, var(--gold)); }
+    .g2 .bar-fill { background: linear-gradient(90deg, #444, var(--silver)); }
+    .g3 .bar-fill { background: linear-gradient(90deg, #5a3010, var(--bronze)); }
+    .rank-item:not(.g1):not(.g2):not(.g3) .bar-fill { background: linear-gradient(90deg, var(--green-d), var(--green)); }
+
+    .rank-right { flex-shrink: 0; text-align: right; }
+    .rank-pts { font-size: 1.5rem; font-weight: 900; letter-spacing: -1px; color: var(--white); display: block; line-height: 1; }
+    .g1 .rank-pts { color: var(--gold); }
+    .rank-pts-lbl { font-size: 0.58rem; text-transform: uppercase; letter-spacing: 1px; color: var(--muted); }
+    .rank-chips { display: flex; gap: 4px; justify-content: flex-end; margin-top: 6px; flex-wrap: wrap; }
+    .chip { font-size: 0.65rem; font-weight: 600; padding: 2px 7px; border-radius: 999px; background: var(--surface2); border: 1px solid var(--border2); color: var(--muted2); white-space: nowrap; }
+
+    /* ── HIDDEN GEMS ── */
+    .gems-section { padding: 0 24px 48px; }
     .gem-card {
-      max-width: 900px; margin: 0 auto;
-      display: flex; align-items: center; gap: 20px;
-      border: 1px solid rgba(139,92,246,.35);
-      border-radius: var(--radius);
-      background: rgba(139,92,246,.06);
-      padding: 20px 24px;
+      display: flex; align-items: center; gap: 16px;
+      background: var(--gem-bg); border: 1px solid var(--gem-br);
+      border-radius: var(--r); padding: 16px 20px; margin-bottom: 8px;
     }
-    .gem-icon { font-size: 2.2rem; flex-shrink: 0; }
-    .gem-label {
-      font-size: 0.65rem; font-weight: 700;
-      text-transform: uppercase; letter-spacing: 2px;
-      color: var(--gem); margin-bottom: 4px;
-    }
-    .gem-name {
-      font-size: 1.05rem; font-weight: 800; color: var(--white);
-    }
-    .gem-sub { font-size: 0.78rem; color: var(--muted2); margin-top: 2px; }
+    .gem-icon { font-size: 2rem; flex-shrink: 0; }
+    .gem-tag { font-size: 0.62rem; font-weight: 700; text-transform: uppercase; letter-spacing: 2px; color: #a78bfa; margin-bottom: 3px; }
+    .gem-name { font-size: 1rem; font-weight: 800; color: var(--white); }
+    .gem-sub { font-size: 0.75rem; color: var(--muted2); margin-top: 2px; }
 
-    /* ── CÓMO FUNCIONA ── */
-    .how-section {
-      background: var(--surface);
-      border-top: 1px solid var(--border);
-    }
-    .how-cards {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-      gap: 1px; background: var(--border);
-      border: 1px solid var(--border); border-radius: var(--radius);
-      overflow: hidden; margin-bottom: 36px;
-    }
-    .how-card { background: var(--surface2); padding: 26px 22px; }
-    .how-num {
-      font-size: 1.6rem; font-weight: 900;
-      color: var(--green-dim); line-height: 1; margin-bottom: 10px;
-    }
-    .how-card h3 { font-size: 0.88rem; font-weight: 700; color: var(--white); margin-bottom: 6px; }
-    .how-card p { font-size: 0.8rem; color: var(--muted2); }
+    /* ── HOW IT WORKS ── */
+    .how-section { background: var(--surface); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); padding: 40px 24px; }
+    .how-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px,1fr)); gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: var(--r); overflow: hidden; margin-bottom: 28px; }
+    .how-card { background: var(--surface2); padding: 22px 18px; }
+    .how-n { font-size: 1.4rem; font-weight: 900; color: var(--green-d); line-height: 1; margin-bottom: 8px; }
+    .how-card h3 { font-size: 0.85rem; font-weight: 700; color: var(--white); margin-bottom: 5px; }
+    .how-card p { font-size: 0.78rem; color: var(--muted2); }
 
-    /* ── F1 SCALE (inline, small) ── */
-    .f1-block { margin-top: 0; }
-    .f1-label {
-      font-size: 0.68rem; font-weight: 700;
-      letter-spacing: 2px; text-transform: uppercase;
-      color: var(--muted2); margin-bottom: 10px;
-    }
-    .f1-row { display: flex; gap: 5px; flex-wrap: wrap; }
-    .f1-cell {
-      flex: 1; min-width: 46px;
-      background: var(--border); border: 1px solid transparent;
-      border-radius: 7px; padding: 10px 4px; text-align: center;
-    }
-    .f1-cell.f1-top { border-color: var(--green); background: rgba(46,196,90,.07); }
-    .f1-cell .f1-pos { font-size: 0.58rem; color: var(--muted); margin-bottom: 3px; letter-spacing: .5px; }
-    .f1-cell .f1-pts { font-size: 0.95rem; font-weight: 900; color: var(--text); }
-    .f1-cell.f1-top .f1-pts { color: var(--green); }
+    .f1-label { font-size: 0.62rem; font-weight: 700; text-transform: uppercase; letter-spacing: 2px; color: var(--muted2); margin-bottom: 8px; }
+    .f1-row { display: flex; gap: 4px; }
+    .f1-cell { flex:1; background: var(--border); border-radius: 6px; padding: 8px 2px; text-align: center; }
+    .f1-cell.hi { background: rgba(46,196,90,.08); outline: 1px solid rgba(46,196,90,.2); }
+    .f1-p { font-size: 0.55rem; color: var(--muted); margin-bottom: 2px; }
+    .f1-v { font-size: 0.85rem; font-weight: 900; color: var(--text); }
+    .f1-cell.hi .f1-v { color: var(--green); }
 
     /* ── FOOTER ── */
-    footer {
-      background: var(--bg);
-      border-top: 1px solid var(--border);
-      padding: 36px 24px;
-      text-align: center;
-    }
-    .footer-actions {
-      display: flex; align-items: center; justify-content: center;
-      gap: 10px; flex-wrap: wrap; margin-bottom: 24px;
-    }
-    .bgg-badge {
-      display: inline-flex; align-items: center;
-      border: 1px solid var(--border); border-radius: 8px;
-      padding: 10px 20px;
-      transition: border-color .2s, opacity .2s;
-      opacity: .75;
-    }
-    .bgg-badge:hover { border-color: var(--border2); opacity: 1; }
-    .bgg-badge img { display: block; }
-    .tg-badge {
-      display: inline-flex; align-items: center; gap: 8px;
-      border: 1px solid var(--border); border-radius: 8px;
-      padding: 10px 18px;
-      font-size: 0.8rem; font-weight: 700; color: var(--text);
-      transition: border-color .2s;
-    }
-    .tg-badge:hover { border-color: var(--green); }
-    .footer-copy { font-size: 0.75rem; color: var(--muted); }
+    footer { padding: 32px 24px; text-align: center; border-top: 1px solid var(--border); }
+    .footer-btns { display: flex; align-items: center; justify-content: center; gap: 8px; flex-wrap: wrap; margin-bottom: 20px; }
+    .btn-bgg { display: inline-flex; align-items: center; border: 1px solid var(--border2); border-radius: 7px; padding: 9px 18px; opacity: .6; transition: opacity .2s, border-color .2s; }
+    .btn-bgg:hover { opacity: 1; border-color: #444; }
+    .btn-bgg img { display: block; }
+    .btn-tg { display: inline-flex; align-items: center; gap: 7px; border: 1px solid var(--border2); border-radius: 7px; padding: 9px 18px; font-size: 0.78rem; font-weight: 700; color: var(--text); transition: border-color .2s; }
+    .btn-tg:hover { border-color: var(--green); }
+    .footer-copy { font-size: 0.72rem; color: var(--muted); }
     .footer-copy a { color: var(--muted); text-decoration: underline; }
-    .footer-copy a:hover { color: var(--text); }
     .generated-at { font-size: 0.65rem; color: #2a2a2a; margin-top: 6px; }
 
-    @media (max-width: 600px) {
-      .top10-grid { grid-template-columns: 1fr; }
-      .stats-bar-inner { grid-template-columns: repeat(3, 1fr); }
-      .stat-item { padding: 20px 8px; }
-      .how-cards { grid-template-columns: 1fr; }
+    @media (max-width: 560px) {
+      .rank-thumb, .rank-thumb-empty { width: 48px; height: 48px; }
+      .rank-pts { font-size: 1.2rem; }
+      .rank-pos { font-size: 1.2rem; min-width: 28px; }
     }
   </style>
 </head>
@@ -357,176 +166,225 @@
 
 <!-- HERO -->
 <header class="hero">
-  <div class="dice-logo">🎲</div>
-  <div class="hero-eyebrow">El Clú del Boardgame</div>
-  <h1>Ranking <span>del Clú</span></h1>
+  <div class="logo">🎲</div>
+  <div class="eyebrow">El Clú del Boardgame</div>
+  <h1>Ranking <em>del Clú</em></h1>
   <div class="hero-meta">
-    <span class="hero-edition">Edición 2026</span>
-    <span class="hero-sep">·</span>
-      <span class="status-badge open"><span class="status-dot"></span>Votación abierta</span>
-      <span class="hero-sep">·</span>
-      <span>8 votos recibidos</span>
+    <span style="font-weight:600;color:var(--white)">Edición 2026</span>
+    <span class="sep">·</span>
+      <span class="badge-open"><span class="dot-live"></span>Votación abierta</span>
+      <span class="sep">·</span>
+      <span>10 votos recibidos</span>
   </div>
 </header>
 
 <!-- STATS BAR -->
 <div class="stats-bar">
-  <div class="stats-bar-inner">
-    <div class="stat-item">
-      <span class="stat-num">4</span>
-      <span class="stat-label">Juegos nominados</span>
-    </div>
-    <div class="stat-item">
-      <span class="stat-num">8</span>
-      <span class="stat-label">Votos recibidos</span>
-    </div>
-    <div class="stat-item">
-      <span class="stat-num">8</span>
-      <span class="stat-label">Votantes</span>
-    </div>
+  <div class="stats-row">
+    <div class="stat"><span class="stat-n">7</span><span class="stat-l">Juegos nominados</span></div>
+    <div class="stat"><span class="stat-n">10</span><span class="stat-l">Votos recibidos</span></div>
+    <div class="stat"><span class="stat-n">10</span><span class="stat-l">Votantes</span></div>
   </div>
 </div>
 
 <!-- RANKING -->
 <section class="ranking-section">
-  <div class="container">
-    <div class="section-eyebrow">Edición 2026</div>
-    <div class="section-title">TEST - Ranking del Clú 2026</div>
-    <p class="section-sub">
-      Actualizado al 2026-04-19 · Solo juegos con 3+ menciones
-    </p>
+  <div class="wrap">
+    <div class="section-tag">Edición 2026</div>
+    <div class="section-h">TEST - Ranking del Clú 2026</div>
+    <p class="section-sub">Actualizado al 2026-04-19 · Solo juegos con 3+ menciones · Sistema de puntos F1</p>
 
-    <!-- TOP 10 CARDS -->
-    <div class="top10-grid">
-      <div class="game-card top1">
-        <div class="card-pos-row">
-<span class="card-medal">🥇</span>
+    <div class="rank-list">
+      <div class="rank-item g1">
+        <div class="rank-pos">1</div>
+          <div class="rank-thumb-empty">🎲</div>
+        <div class="rank-info">
+          <a class="rank-name" href="https://boardgamegeek.com/boardgame/397598" target="_blank" rel="noopener">Dune: Imperium – Uprising</a>
+          <div class="rank-year">2023</div>
+          <div class="bar-wrap"><div class="bar-fill" style="width:100.0%"></div></div>
         </div>
-        <div class="card-body">
-            <div class="card-no-thumb">🎲</div>
-          <div class="card-info">
-            <a class="card-name" href="https://boardgamegeek.com/boardgame/397598" target="_blank" rel="noopener">Dune: Imperium – Uprising</a>
-            <div class="card-year">2023</div>
-            <div class="bar-wrap"><div class="bar-fill" style="width:100.0%"></div></div>
-            <div class="card-stats">
-              <span class="card-pts">37</span>
-              <span class="card-pts-label">pts</span>
-              <span class="stat-sep">·</span>
-                <span>3 de 8 votantes</span>
-              <span class="stat-sep">·</span>
-              <span>prom. 4.7</span>
-            </div>
+        <div class="rank-right">
+          <span class="rank-pts">62</span>
+          <span class="rank-pts-lbl">pts</span>
+          <div class="rank-chips">
+              <span class="chip">4/10 votantes</span>
+            <span class="chip">⌀ 3.8</span>
           </div>
         </div>
       </div>
-      <div class="game-card top2">
-        <div class="card-pos-row">
-<span class="card-medal">🥈</span>
+      <div class="rank-item g2">
+        <div class="rank-pos">2</div>
+          <div class="rank-thumb-empty">🎲</div>
+        <div class="rank-info">
+          <a class="rank-name" href="https://boardgamegeek.com/boardgame/174430" target="_blank" rel="noopener">Gloomhaven</a>
+          <div class="rank-year">2017</div>
+          <div class="bar-wrap"><div class="bar-fill" style="width:64.5%"></div></div>
         </div>
-        <div class="card-body">
-            <div class="card-no-thumb">🎲</div>
-          <div class="card-info">
-            <a class="card-name" href="https://boardgamegeek.com/boardgame/246900" target="_blank" rel="noopener">Eclipse: Second Dawn for the Galaxy</a>
-            <div class="card-year">2020</div>
-            <div class="bar-wrap"><div class="bar-fill" style="width:97.3%"></div></div>
-            <div class="card-stats">
-              <span class="card-pts">36</span>
-              <span class="card-pts-label">pts</span>
-              <span class="stat-sep">·</span>
-                <span>3 de 8 votantes</span>
-              <span class="stat-sep">·</span>
-              <span>prom. 4.3</span>
-            </div>
+        <div class="rank-right">
+          <span class="rank-pts">40</span>
+          <span class="rank-pts-lbl">pts</span>
+          <div class="rank-chips">
+              <span class="chip">4/10 votantes</span>
+            <span class="chip">⌀ 5.2</span>
           </div>
         </div>
       </div>
-      <div class="game-card top3">
-        <div class="card-pos-row">
-<span class="card-medal">🥉</span>
+      <div class="rank-item g3">
+        <div class="rank-pos">3</div>
+          <div class="rank-thumb-empty">🎲</div>
+        <div class="rank-info">
+          <a class="rank-name" href="https://boardgamegeek.com/boardgame/224517" target="_blank" rel="noopener">Brass: Birmingham</a>
+          <div class="rank-year">2018</div>
+          <div class="bar-wrap"><div class="bar-fill" style="width:59.7%"></div></div>
         </div>
-        <div class="card-body">
-            <div class="card-no-thumb">🎲</div>
-          <div class="card-info">
-            <a class="card-name" href="https://boardgamegeek.com/boardgame/266507" target="_blank" rel="noopener">Clank! Legacy: Acquisitions Incorporated</a>
-            <div class="card-year">2019</div>
-            <div class="bar-wrap"><div class="bar-fill" style="width:75.7%"></div></div>
-            <div class="card-stats">
-              <span class="card-pts">28</span>
-              <span class="card-pts-label">pts</span>
-              <span class="stat-sep">·</span>
-                <span>3 de 8 votantes</span>
-              <span class="stat-sep">·</span>
-              <span>prom. 5.7</span>
-            </div>
+        <div class="rank-right">
+          <span class="rank-pts">37</span>
+          <span class="rank-pts-lbl">pts</span>
+          <div class="rank-chips">
+              <span class="chip">3/10 votantes</span>
+            <span class="chip">⌀ 5.0</span>
           </div>
         </div>
       </div>
-      <div class="game-card ">
-        <div class="card-pos-row">
-<span class="card-pos-num">#4</span>
+      <div class="rank-item ">
+        <div class="rank-pos">4</div>
+          <div class="rank-thumb-empty">🎲</div>
+        <div class="rank-info">
+          <a class="rank-name" href="https://boardgamegeek.com/boardgame/312484" target="_blank" rel="noopener">Lost Ruins of Arnak</a>
+          <div class="rank-year">2020</div>
+          <div class="bar-wrap"><div class="bar-fill" style="width:58.1%"></div></div>
         </div>
-        <div class="card-body">
-            <div class="card-no-thumb">🎲</div>
-          <div class="card-info">
-            <a class="card-name" href="https://boardgamegeek.com/boardgame/174430" target="_blank" rel="noopener">Gloomhaven</a>
-            <div class="card-year">2017</div>
-            <div class="bar-wrap"><div class="bar-fill" style="width:59.5%"></div></div>
-            <div class="card-stats">
-              <span class="card-pts">22</span>
-              <span class="card-pts-label">pts</span>
-              <span class="stat-sep">·</span>
-                <span>3 de 8 votantes</span>
-              <span class="stat-sep">·</span>
-              <span>prom. 6.3</span>
-            </div>
+        <div class="rank-right">
+          <span class="rank-pts">36</span>
+          <span class="rank-pts-lbl">pts</span>
+          <div class="rank-chips">
+              <span class="chip">4/10 votantes</span>
+            <span class="chip">⌀ 5.8</span>
+          </div>
+        </div>
+      </div>
+      <div class="rank-item ">
+        <div class="rank-pos">5</div>
+          <div class="rank-thumb-empty">🎲</div>
+        <div class="rank-info">
+          <a class="rank-name" href="https://boardgamegeek.com/boardgame/246900" target="_blank" rel="noopener">Eclipse: Second Dawn for the Galaxy</a>
+          <div class="rank-year">2020</div>
+          <div class="bar-wrap"><div class="bar-fill" style="width:58.1%"></div></div>
+        </div>
+        <div class="rank-right">
+          <span class="rank-pts">36</span>
+          <span class="rank-pts-lbl">pts</span>
+          <div class="rank-chips">
+              <span class="chip">3/10 votantes</span>
+            <span class="chip">⌀ 4.3</span>
+          </div>
+        </div>
+      </div>
+      <div class="rank-item ">
+        <div class="rank-pos">6</div>
+          <div class="rank-thumb-empty">🎲</div>
+        <div class="rank-info">
+          <a class="rank-name" href="https://boardgamegeek.com/boardgame/162886" target="_blank" rel="noopener">Spirit Island</a>
+          <div class="rank-year">2017</div>
+          <div class="bar-wrap"><div class="bar-fill" style="width:54.8%"></div></div>
+        </div>
+        <div class="rank-right">
+          <span class="rank-pts">34</span>
+          <span class="rank-pts-lbl">pts</span>
+          <div class="rank-chips">
+              <span class="chip">3/10 votantes</span>
+            <span class="chip">⌀ 5.7</span>
+          </div>
+        </div>
+      </div>
+      <div class="rank-item ">
+        <div class="rank-pos">7</div>
+          <div class="rank-thumb-empty">🎲</div>
+        <div class="rank-info">
+          <a class="rank-name" href="https://boardgamegeek.com/boardgame/266507" target="_blank" rel="noopener">Clank! Legacy: Acquisitions Incorporated</a>
+          <div class="rank-year">2019</div>
+          <div class="bar-wrap"><div class="bar-fill" style="width:45.2%"></div></div>
+        </div>
+        <div class="rank-right">
+          <span class="rank-pts">28</span>
+          <span class="rank-pts-lbl">pts</span>
+          <div class="rank-chips">
+              <span class="chip">3/10 votantes</span>
+            <span class="chip">⌀ 5.7</span>
           </div>
         </div>
       </div>
     </div>
-
-    <!-- TABLA 11+ -->
   </div>
 </section>
 
-<!-- HIDDEN GEM -->
+<!-- HIDDEN GEMS — best avg position outside ranking -->
 
 
-<!-- CÓMO FUNCIONA + F1 -->
+<!-- CÓMO FUNCIONA -->
 <section class="how-section">
-  <div class="container">
-    <div class="section-eyebrow">Metodología</div>
-    <div class="section-title">¿Cómo funciona?</div>
+  <div class="wrap">
+    <div class="section-tag" style="margin-bottom:6px">Metodología</div>
+    <div class="section-h" style="margin-bottom:4px">¿Cómo funciona?</div>
     <p class="section-sub">Simple, transparente y apasionado — como los juegos que elegimos.</p>
-    <div class="how-cards">
+    <div class="how-grid">
       <div class="how-card">
-        <div class="how-num">01</div>
+        <div class="how-n">01</div>
         <h3>Votá tu top 10</h3>
-        <p>Cada miembro elige sus 10 juegos favoritos en orden de preferencia a través del bot de Telegram.</p>
+        <p>Cada miembro elige sus 10 juegos favoritos en orden a través del bot de Telegram.</p>
       </div>
       <div class="how-card">
-        <div class="how-num">02</div>
+        <div class="how-n">02</div>
         <h3>Puntaje estilo F1</h3>
-        <p>El 1° lugar suma 25 pts, el 2° 18, el 3° 15… hasta el 10° con 1 punto. Premia la pasión.</p>
+        <p>1° lugar = 25 pts, 2° = 18, 3° = 15… hasta 10° con 1 pt. Premia la pasión.</p>
       </div>
       <div class="how-card">
-        <div class="how-num">03</div>
+        <div class="how-n">03</div>
         <h3>Ranking del club</h3>
-        <p>Se agregan todos los votos y se publica el top. Solo juegos con 3+ menciones califican.</p>
+        <p>Se agregan todos los votos. Solo juegos con 3+ menciones entran al top.</p>
       </div>
     </div>
-    <div class="f1-block">
-      <div class="f1-label">Escala de puntos</div>
-      <div class="f1-row">
-        <div class="f1-cell f1-top"><div class="f1-pos">1°</div><div class="f1-pts">25</div></div>
-        <div class="f1-cell"><div class="f1-pos">2°</div><div class="f1-pts">18</div></div>
-        <div class="f1-cell"><div class="f1-pos">3°</div><div class="f1-pts">15</div></div>
-        <div class="f1-cell"><div class="f1-pos">4°</div><div class="f1-pts">12</div></div>
-        <div class="f1-cell"><div class="f1-pos">5°</div><div class="f1-pts">10</div></div>
-        <div class="f1-cell"><div class="f1-pos">6°</div><div class="f1-pts">8</div></div>
-        <div class="f1-cell"><div class="f1-pos">7°</div><div class="f1-pts">6</div></div>
-        <div class="f1-cell"><div class="f1-pos">8°</div><div class="f1-pts">4</div></div>
-        <div class="f1-cell"><div class="f1-pos">9°</div><div class="f1-pts">2</div></div>
-        <div class="f1-cell"><div class="f1-pos">10°</div><div class="f1-pts">1</div></div>
+    <div class="f1-label">Escala de puntos</div>
+    <div class="f1-row">
+      <div class="f1-cell hi">
+        <div class="f1-p">1°</div>
+        <div class="f1-v">25</div>
+      </div>
+      <div class="f1-cell">
+        <div class="f1-p">2°</div>
+        <div class="f1-v">18</div>
+      </div>
+      <div class="f1-cell">
+        <div class="f1-p">3°</div>
+        <div class="f1-v">15</div>
+      </div>
+      <div class="f1-cell">
+        <div class="f1-p">4°</div>
+        <div class="f1-v">12</div>
+      </div>
+      <div class="f1-cell">
+        <div class="f1-p">5°</div>
+        <div class="f1-v">10</div>
+      </div>
+      <div class="f1-cell">
+        <div class="f1-p">6°</div>
+        <div class="f1-v">8</div>
+      </div>
+      <div class="f1-cell">
+        <div class="f1-p">7°</div>
+        <div class="f1-v">6</div>
+      </div>
+      <div class="f1-cell">
+        <div class="f1-p">8°</div>
+        <div class="f1-v">4</div>
+      </div>
+      <div class="f1-cell">
+        <div class="f1-p">9°</div>
+        <div class="f1-v">2</div>
+      </div>
+      <div class="f1-cell">
+        <div class="f1-p">10°</div>
+        <div class="f1-v">1</div>
       </div>
     </div>
   </div>
@@ -534,11 +392,11 @@
 
 <!-- FOOTER -->
 <footer>
-  <div class="footer-actions">
-    <a href="https://boardgamegeek.com" target="_blank" rel="noopener" class="bgg-badge">
+  <div class="footer-btns">
+    <a href="https://boardgamegeek.com" target="_blank" rel="noopener" class="btn-bgg">
       <img src="img/powered_by_bgg.png" alt="Powered by BoardGameGeek" height="28">
     </a>
-    <a href="https://t.me/ranking_clu_bot" target="_blank" rel="noopener" class="tg-badge">
+    <a href="https://t.me/ranking_clu_bot" target="_blank" rel="noopener" class="btn-tg">
       ✈ Votá con @ranking_clu_bot
     </a>
   </div>
@@ -546,7 +404,7 @@
     Ranking del Clú · El Clú del Boardgame · Argentina<br>
     Datos de juegos provistos por <a href="https://boardgamegeek.com" target="_blank" rel="noopener">BoardGameGeek</a> bajo uso no-comercial.
   </p>
-  <p class="generated-at">Generado el 2026-04-19T21:18:41+00:00</p>
+  <p class="generated-at">Generado el 2026-04-19T21:28:42+00:00</p>
 </footer>
 
 </body>
