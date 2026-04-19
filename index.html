@@ -3,20 +3,20 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Ranking del Clú — Top Juegos de Mesa</title>
+  <title>Ranking del Clú — 2026</title>
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     :root {
-      --bg:       #0d0d0d;
-      --surface:  #161616;
-      --border:   #252525;
-      --green:    #2ec45a;
+      --bg:      #0d0d0d;
+      --surface: #161616;
+      --border:  #252525;
+      --green:   #2ec45a;
       --green-dim:#1f8f40;
-      --white:    #ffffff;
-      --text:     #e8e8e8;
-      --muted:    #666666;
-      --radius:   10px;
+      --white:   #ffffff;
+      --text:    #e8e8e8;
+      --muted:   #666666;
+      --radius:  10px;
     }
 
     body {
@@ -84,6 +84,51 @@
       color: var(--white); letter-spacing: -0.5px; margin-bottom: 6px;
     }
     .section-sub { color: var(--muted); margin-bottom: 36px; font-size: 0.88rem; }
+
+    /* ── RANKING ── */
+    .ranking-section { background: var(--bg); border-top: 1px solid var(--border); }
+    .ranking-list { display: flex; flex-direction: column; gap: 3px; }
+    .rank-row {
+      display: flex; align-items: center; gap: 16px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 14px 18px;
+      transition: border-color 0.15s;
+    }
+    .rank-row:hover { border-color: #3a3a3a; }
+    .rank-row.pos-1 { border-color: var(--green); }
+    .rank-num {
+      font-size: 1.3rem; font-weight: 900;
+      color: var(--muted); min-width: 36px; text-align: center;
+      letter-spacing: -1px; flex-shrink: 0;
+    }
+    .rank-row.pos-1 .rank-num { color: var(--green); font-size: 1.5rem; }
+    .rank-row.pos-2 .rank-num,
+    .rank-row.pos-3 .rank-num { color: var(--text); }
+    .rank-thumb {
+      width: 52px; height: 52px; border-radius: 7px;
+      object-fit: cover; flex-shrink: 0;
+    }
+    .rank-thumb-empty {
+      width: 52px; height: 52px; border-radius: 7px;
+      background: var(--border); flex-shrink: 0;
+    }
+    .rank-info { flex: 1; min-width: 0; }
+    .rank-name {
+      font-size: 0.98rem; font-weight: 700;
+      color: var(--white);
+      white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+    }
+    .rank-name a:hover { color: var(--green); }
+    .rank-meta { font-size: 0.76rem; color: var(--muted); margin-top: 3px; }
+    .rank-pts { text-align: right; flex-shrink: 0; }
+    .rank-pts .pts-num {
+      display: block; font-size: 1.4rem; font-weight: 900;
+      color: var(--white); letter-spacing: -1px;
+    }
+    .rank-row.pos-1 .pts-num { color: var(--green); }
+    .rank-pts .pts-label { font-size: 0.65rem; color: var(--muted); text-transform: uppercase; letter-spacing: 1px; }
 
     /* ── CÓMO FUNCIONA ── */
     .steps {
@@ -179,6 +224,7 @@
       transition: border-color 0.2s;
     }
     .tg-link:hover { border-color: var(--green); }
+    .generated-at { font-size: 0.68rem; color: #333; margin-top: 8px; }
   </style>
 </head>
 <body>
@@ -205,15 +251,73 @@
   </div>
 </header>
 
-<!-- COMING SOON -->
-<section class="coming-soon">
+<!-- RANKING o COMING SOON -->
+<section class="ranking-section">
   <div class="container">
-    <div class="soon-inner">
-      <div class="soon-year">2026</div>
-      <div class="soon-title">Ranking en preparación</div>
-      <p class="soon-sub">
-        <span class="dot-live"></span>Votación abierta — el ranking se publicará cuando haya suficientes votos
-      </p>
+    <div class="section-label">Edición 2026</div>
+    <div class="section-title">Top 4 — TEST - Ranking del Clú 2026</div>
+    <p class="section-sub">Actualizado al 2026-04-19 · Solo juegos con 3+ menciones</p>
+    <div class="ranking-list">
+      <div class="rank-row pos-1">
+        <div class="rank-num">1</div>
+          <img class="rank-thumb" src="http://cf.geekdo-images.com/images/pic259085_t.jpg" alt="Agricola" loading="lazy">
+        <div class="rank-info">
+          <div class="rank-name">
+            <a href="https://boardgamegeek.com/boardgame/31260" target="_blank" rel="noopener">
+              Agricola <span style="color:var(--muted);font-weight:400">(2007)</span>            </a>
+          </div>
+          <div class="rank-meta">4 menciones · pos. prom. 2.8</div>
+        </div>
+        <div class="rank-pts">
+          <span class="pts-num">73</span>
+          <span class="pts-label">pts</span>
+        </div>
+      </div>
+      <div class="rank-row pos-2">
+        <div class="rank-num">2</div>
+          <img class="rank-thumb" src="http://cf.geekdo-images.com/images/pic2094729_t.png" alt="Trickerion: Legends of Illusion" loading="lazy">
+        <div class="rank-info">
+          <div class="rank-name">
+            <a href="https://boardgamegeek.com/boardgame/163068" target="_blank" rel="noopener">
+              Trickerion: Legends of Illusion <span style="color:var(--muted);font-weight:400">(2014)</span>            </a>
+          </div>
+          <div class="rank-meta">3 menciones · pos. prom. 6.0</div>
+        </div>
+        <div class="rank-pts">
+          <span class="pts-num">26</span>
+          <span class="pts-label">pts</span>
+        </div>
+      </div>
+      <div class="rank-row pos-3">
+        <div class="rank-num">3</div>
+          <img class="rank-thumb" src="http://cf.geekdo-images.com/images/pic1165426_t.jpg" alt="Ora et Labora" loading="lazy">
+        <div class="rank-info">
+          <div class="rank-name">
+            <a href="https://boardgamegeek.com/boardgame/70149" target="_blank" rel="noopener">
+              Ora et Labora <span style="color:var(--muted);font-weight:400">(2011)</span>            </a>
+          </div>
+          <div class="rank-meta">3 menciones · pos. prom. 6.0</div>
+        </div>
+        <div class="rank-pts">
+          <span class="pts-num">25</span>
+          <span class="pts-label">pts</span>
+        </div>
+      </div>
+      <div class="rank-row ">
+        <div class="rank-num">4</div>
+          <img class="rank-thumb" src="http://cf.geekdo-images.com/images/pic1054375_t.jpg" alt="Trajan" loading="lazy">
+        <div class="rank-info">
+          <div class="rank-name">
+            <a href="https://boardgamegeek.com/boardgame/102680" target="_blank" rel="noopener">
+              Trajan <span style="color:var(--muted);font-weight:400">(2011)</span>            </a>
+          </div>
+          <div class="rank-meta">3 menciones · pos. prom. 8.3</div>
+        </div>
+        <div class="rank-pts">
+          <span class="pts-num">11</span>
+          <span class="pts-label">pts</span>
+        </div>
+      </div>
     </div>
   </div>
 </section>
@@ -280,6 +384,7 @@
   <a href="https://t.me/elcludelboardgame" target="_blank" rel="noopener" class="tg-link">
     ✈ Sumate al grupo en Telegram
   </a>
+  <p class="generated-at">Generado el 2026-04-19T03:46:28Z</p>
 </footer>
 
 </body>
