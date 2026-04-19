@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ranking del Clú — 2025 (Preview)</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg:       #0d0d0d;
+      --surface:  #111111;
+      --surface2: #181818;
+      --border:   #1e1e1e;
+      --border2:  #2a2a2a;
+      --green:    #2ec45a;
+      --green-d:  #1a6e35;
+      --white:    #f0f0f0;
+      --text:     #c8c8c8;
+      --muted:    #4a4a4a;
+      --muted2:   #777;
+      --gold:     #c9962a;
+      --gold-bg:  rgba(201,150,42,.08);
+      --gold-br:  rgba(201,150,42,.35);
+      --silver:   #8a9199;
+      --silver-bg:rgba(138,145,153,.06);
+      --silver-br:rgba(138,145,153,.3);
+      --bronze:   #9e6a38;
+      --bronze-bg:rgba(158,106,56,.06);
+      --bronze-br:rgba(158,106,56,.3);
+      --gem:      #7c3aed;
+      --gem-bg:   rgba(124,58,237,.07);
+      --gem-br:   rgba(124,58,237,.3);
+      --r:        8px;
+    }
+
+    body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; background: var(--bg); color: var(--text); line-height: 1.5; }
+    a { color: inherit; text-decoration: none; }
+    .wrap { max-width: 780px; margin: 0 auto; }
+
+    /* ── HERO ── */
+    .hero { border-bottom: 1px solid var(--border); padding: 52px 24px 44px; text-align: center; }
+    .logo { display: inline-flex; align-items: center; justify-content: center; width: 64px; height: 64px; background: var(--green); border-radius: 16px; font-size: 2rem; line-height: 1; margin-bottom: 20px; }
+    .eyebrow { font-size: 10px; font-weight: 700; letter-spacing: 3px; text-transform: uppercase; color: var(--muted2); margin-bottom: 10px; }
+    .hero h1 { font-size: clamp(2rem, 6vw, 3.2rem); font-weight: 900; letter-spacing: -2px; color: var(--white); margin-bottom: 14px; }
+    .hero h1 em { color: var(--green); font-style: normal; }
+    .hero-meta { display: flex; align-items: center; justify-content: center; gap: 10px; flex-wrap: wrap; font-size: 0.85rem; color: var(--muted2); }
+    .badge-open { display: inline-flex; align-items: center; gap: 5px; padding: 3px 10px; border-radius: 999px; font-size: 0.72rem; font-weight: 700; background: rgba(46,196,90,.1); color: var(--green); border: 1px solid rgba(46,196,90,.2); }
+    .dot-live { width: 6px; height: 6px; border-radius: 50%; background: currentColor; animation: pulse 1.6s ease-in-out infinite; }
+    @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:.25} }
+    .sep { color: var(--border2); }
+
+    /* ── STATS BAR ── */
+    .stats-bar { background: var(--surface); border-bottom: 1px solid var(--border); }
+    .stats-row { display: grid; grid-template-columns: repeat(3,1fr); max-width: 780px; margin: 0 auto; }
+    .stat { padding: 22px 16px; text-align: center; }
+    .stat + .stat { border-left: 1px solid var(--border); }
+    .stat-n { display: block; font-size: clamp(1.8rem,4vw,2.4rem); font-weight: 900; letter-spacing: -1.5px; color: var(--green); line-height: 1; margin-bottom: 4px; }
+    .stat-l { font-size: 0.62rem; font-weight: 700; text-transform: uppercase; letter-spacing: 2px; color: var(--muted2); }
+
+    /* ── RANKING ── */
+    .ranking-section { padding: 48px 24px; }
+    .section-tag { font-size: 10px; font-weight: 700; letter-spacing: 3px; text-transform: uppercase; color: var(--green); margin-bottom: 6px; }
+    .section-h { font-size: 1.4rem; font-weight: 800; color: var(--white); letter-spacing: -.5px; margin-bottom: 4px; }
+    .section-sub { font-size: 0.8rem; color: var(--muted2); margin-bottom: 28px; }
+
+    .rank-list { display: flex; flex-direction: column; gap: 6px; }
+
+    .rank-item {
+      display: flex; align-items: center; gap: 16px;
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: var(--r); padding: 14px 18px;
+      transition: border-color .15s;
+      position: relative; overflow: hidden;
+    }
+    .rank-item:hover { border-color: var(--border2); }
+    .rank-item.g1 { background: var(--gold-bg);   border-color: var(--gold-br); }
+    .rank-item.g2 { background: var(--silver-bg); border-color: var(--silver-br); }
+    .rank-item.g3 { background: var(--bronze-bg); border-color: var(--bronze-br); }
+
+    /* accent left strip for podium */
+    .rank-item.g1::before { content:''; position:absolute; left:0; top:0; bottom:0; width:3px; background:var(--gold); border-radius:var(--r) 0 0 var(--r); }
+    .rank-item.g2::before { content:''; position:absolute; left:0; top:0; bottom:0; width:3px; background:var(--silver); border-radius:var(--r) 0 0 var(--r); }
+    .rank-item.g3::before { content:''; position:absolute; left:0; top:0; bottom:0; width:3px; background:var(--bronze); border-radius:var(--r) 0 0 var(--r); }
+
+    .rank-pos {
+      font-size: 1.6rem; font-weight: 900; letter-spacing: -1px;
+      min-width: 38px; text-align: center; flex-shrink: 0; line-height: 1;
+      color: var(--muted);
+    }
+    .g1 .rank-pos { color: var(--gold); }
+    .g2 .rank-pos { color: var(--silver); }
+    .g3 .rank-pos { color: var(--bronze); }
+
+    .rank-thumb { width: 64px; height: 64px; border-radius: 7px; object-fit: cover; flex-shrink: 0; background: var(--border); }
+    .rank-thumb.empty { display: flex; align-items: center; justify-content: center; font-size: 1.4rem; color: var(--muted); }
+
+    .rank-info { flex: 1; min-width: 0; }
+    .rank-name { font-size: 0.97rem; font-weight: 700; color: var(--white); display: block; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; margin-bottom: 2px; }
+    .rank-name:hover { color: var(--green); }
+    .rank-year { font-size: 0.7rem; color: var(--muted2); margin-bottom: 8px; }
+
+    .bar-wrap { height: 3px; background: var(--border2); border-radius: 2px; overflow: hidden; }
+    .bar-fill { height: 100%; border-radius: 2px; }
+    .g1 .bar-fill { background: linear-gradient(90deg, #7a5010, var(--gold)); }
+    .g2 .bar-fill { background: linear-gradient(90deg, #444, var(--silver)); }
+    .g3 .bar-fill { background: linear-gradient(90deg, #5a3010, var(--bronze)); }
+    .rank-item:not(.g1):not(.g2):not(.g3) .bar-fill { background: linear-gradient(90deg, var(--green-d), var(--green)); }
+
+    .rank-right { flex-shrink: 0; text-align: right; }
+    .rank-pts { font-size: 1.5rem; font-weight: 900; letter-spacing: -1px; color: var(--white); display: block; line-height: 1; }
+    .g1 .rank-pts { color: var(--gold); }
+    .rank-pts-lbl { font-size: 0.58rem; text-transform: uppercase; letter-spacing: 1px; color: var(--muted); }
+    .rank-chips { display: flex; gap: 4px; justify-content: flex-end; margin-top: 6px; flex-wrap: wrap; }
+    .chip { font-size: 0.65rem; font-weight: 600; padding: 2px 7px; border-radius: 999px; background: var(--surface2); border: 1px solid var(--border2); color: var(--muted2); white-space: nowrap; }
+
+    /* ── HIDDEN GEMS ── */
+    .gems-section { padding: 0 24px 48px; }
+    .gem-card {
+      display: flex; align-items: center; gap: 16px;
+      background: var(--gem-bg); border: 1px solid var(--gem-br);
+      border-radius: var(--r); padding: 16px 20px;
+    }
+    .gem-icon { font-size: 2rem; flex-shrink: 0; }
+    .gem-tag { font-size: 0.62rem; font-weight: 700; text-transform: uppercase; letter-spacing: 2px; color: #a78bfa; margin-bottom: 3px; }
+    .gem-name { font-size: 1rem; font-weight: 800; color: var(--white); }
+    .gem-sub { font-size: 0.75rem; color: var(--muted2); margin-top: 2px; }
+
+    /* ── HOW IT WORKS ── */
+    .how-section { background: var(--surface); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); padding: 40px 24px; }
+    .how-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px,1fr)); gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: var(--r); overflow: hidden; margin-bottom: 28px; }
+    .how-card { background: var(--surface2); padding: 22px 18px; }
+    .how-n { font-size: 1.4rem; font-weight: 900; color: var(--green-d); line-height: 1; margin-bottom: 8px; }
+    .how-card h3 { font-size: 0.85rem; font-weight: 700; color: var(--white); margin-bottom: 5px; }
+    .how-card p { font-size: 0.78rem; color: var(--muted2); }
+
+    .f1-label { font-size: 0.62rem; font-weight: 700; text-transform: uppercase; letter-spacing: 2px; color: var(--muted2); margin-bottom: 8px; }
+    .f1-row { display: flex; gap: 4px; }
+    .f1-cell { flex:1; background: var(--border); border-radius: 6px; padding: 8px 2px; text-align: center; }
+    .f1-cell.hi { background: rgba(46,196,90,.08); outline: 1px solid rgba(46,196,90,.2); }
+    .f1-p { font-size: 0.55rem; color: var(--muted); margin-bottom: 2px; }
+    .f1-v { font-size: 0.85rem; font-weight: 900; color: var(--text); }
+    .f1-cell.hi .f1-v { color: var(--green); }
+
+    /* ── FOOTER ── */
+    footer { padding: 32px 24px; text-align: center; border-top: 1px solid var(--border); }
+    .footer-btns { display: flex; align-items: center; justify-content: center; gap: 8px; flex-wrap: wrap; margin-bottom: 20px; }
+    .btn-bgg { display: inline-flex; align-items: center; border: 1px solid var(--border2); border-radius: 7px; padding: 9px 18px; opacity: .6; transition: opacity .2s, border-color .2s; }
+    .btn-bgg:hover { opacity: 1; border-color: #444; }
+    .btn-bgg img { display: block; }
+    .btn-tg { display: inline-flex; align-items: center; gap: 7px; border: 1px solid var(--border2); border-radius: 7px; padding: 9px 18px; font-size: 0.78rem; font-weight: 700; color: var(--text); transition: border-color .2s; }
+    .btn-tg:hover { border-color: var(--green); }
+    .footer-copy { font-size: 0.72rem; color: var(--muted); }
+    .footer-copy a { color: var(--muted); text-decoration: underline; }
+
+    @media (max-width: 560px) {
+      .rank-thumb { width: 48px; height: 48px; }
+      .rank-pts { font-size: 1.2rem; }
+      .rank-pos { font-size: 1.2rem; min-width: 28px; }
+    }
+  </style>
+</head>
+<body>
+
+<script>
+const VOTERS = 18;
+const GAMES = [
+  { pos:1,  id:224517, name:"Brass: Birmingham",           year:2018, pts:287, mentions:12, avg:1.8,  thumb:"https://cf.geekdo-images.com/x3zxjr-Vw5iU4yDPg70Jgw__thumb/img/dQWvhJaMPsKQWJSAOCz5gLB6ZxA=/fit-in/200x150/filters:strip_icc()/pic3490053.jpg" },
+  { pos:2,  id:342942, name:"Ark Nova",                    year:2021, pts:241, mentions:11, avg:2.1,  thumb:"https://cf.geekdo-images.com/SoU8p28Sk1s8MSvoM4N8pQ__thumb/img/hBLBtCcJlqcJOBJarKHxhcTiPl4=/fit-in/200x150/filters:strip_icc()/pic6293412.jpg" },
+  { pos:3,  id:174430, name:"Gloomhaven",                  year:2017, pts:198, mentions:10, avg:2.5,  thumb:"https://cf.geekdo-images.com/sZYp_3BTDGjh2unaZfZmuA__thumb/img/oC6aHlVPPIoJJe2YMpKKXGvJFss=/fit-in/200x150/filters:strip_icc()/pic2437871.jpg" },
+  { pos:4,  id:161936, name:"Pandemic Legacy: Season 1",   year:2015, pts:175, mentions:9,  avg:3.1,  thumb:"https://cf.geekdo-images.com/HtcGGQ3eSbGF4xOGJqvXSg__thumb/img/3HbGsAZ66y7tCpNaK3t9MVGq82s=/fit-in/200x150/filters:strip_icc()/pic2452831.jpg" },
+  { pos:5,  id:167791, name:"Terraforming Mars",           year:2016, pts:152, mentions:9,  avg:3.4,  thumb:"https://cf.geekdo-images.com/wg9oOLcsKvDesSUdZQ4rxw__thumb/img/BTxqxgYay5tHJfQoImRFPGMpGgM=/fit-in/200x150/filters:strip_icc()/pic3536616.jpg" },
+  { pos:6,  id:162886, name:"Spirit Island",               year:2017, pts:134, mentions:8,  avg:2.9,  thumb:"https://cf.geekdo-images.com/kjfMIxZBGFEXfd4YlUIyiQ__thumb/img/rSAFRoKwRDKH4KJbpCTIhPhKA44=/fit-in/200x150/filters:strip_icc()/pic3615739.jpg" },
+  { pos:7,  id:266192, name:"Wingspan",                    year:2019, pts:118, mentions:8,  avg:3.6,  thumb:"https://cf.geekdo-images.com/yLZJCVLlIx4c7eJEWUNJ7w__thumb/img/4P08LOaFvVVTCCHhVETlAVq21rU=/fit-in/200x150/filters:strip_icc()/pic4458123.jpg" },
+  { pos:8,  id:169786, name:"Scythe",                      year:2016, pts:99,  mentions:7,  avg:4.1,  thumb:"https://cf.geekdo-images.com/7k_nOxpO9OGIjhLq2BvynA__thumb/img/HzmKHs5VpioXxZ7i6Vu3G9e0log=/fit-in/200x150/filters:strip_icc()/pic3163924.jpg" },
+  { pos:9,  id:233078, name:"Twilight Imperium (4th ed.)",  year:2017, pts:84,  mentions:6,  avg:2.2,  thumb:"https://cf.geekdo-images.com/UbrL7v-IM4-0pNlhxb-dGA__thumb/img/gBDhY4qYi4opWFKOXEdC7I6WqAk=/fit-in/200x150/filters:strip_icc()/pic3727516.jpg" },
+  { pos:10, id:237182, name:"Root",                        year:2018, pts:71,  mentions:6,  avg:3.8,  thumb:"https://cf.geekdo-images.com/JUAUWaVUzeBgzirhZNmHHw__thumb/img/B3f6SA-1R0FJWQSKJzL8n2MJlhA=/fit-in/200x150/filters:strip_icc()/pic4254509.jpg" },
+  { pos:11, id:31260,  name:"Agricola",                    year:2007, pts:58,  mentions:5,  avg:3.2,  thumb:null },
+  { pos:12, id:2651,   name:"Power Grid",                  year:2004, pts:47,  mentions:3,  avg:2.0,  thumb:null },
+  { pos:13, id:68448,  name:"7 Wonders",                   year:2010, pts:39,  mentions:5,  avg:5.1,  thumb:null },
+  { pos:14, id:183394, name:"Viticulture: Essential Ed.",   year:2015, pts:33,  mentions:4,  avg:4.5,  thumb:null },
+  { pos:15, id:124361, name:"Concordia",                   year:2013, pts:28,  mentions:3,  avg:3.1,  thumb:null },
+];
+
+const MAX_PTS = GAMES[0].pts;
+
+function cls(pos) { return pos===1?'g1':pos===2?'g2':pos===3?'g3':''; }
+
+function thumb(g) {
+  if (g.thumb) return `<img class="rank-thumb" src="${g.thumb}" referrerpolicy="no-referrer" alt="${g.name}" loading="lazy">`;
+  return `<div class="rank-thumb empty">🎲</div>`;
+}
+
+function renderItem(g) {
+  const pct = Math.round(g.pts / MAX_PTS * 100);
+  return `
+  <div class="rank-item ${cls(g.pos)}">
+    <div class="rank-pos">${g.pos}</div>
+    ${thumb(g)}
+    <div class="rank-info">
+      <a class="rank-name" href="https://boardgamegeek.com/boardgame/${g.id}" target="_blank" rel="noopener">${g.name}</a>
+      <div class="rank-year">${g.year}</div>
+      <div class="bar-wrap"><div class="bar-fill" style="width:${pct}%"></div></div>
+    </div>
+    <div class="rank-right">
+      <span class="rank-pts">${g.pts}</span>
+      <span class="rank-pts-lbl">pts</span>
+      <div class="rank-chips">
+        <span class="chip">${g.mentions}/${VOTERS} votantes</span>
+        <span class="chip">⌀ ${g.avg.toFixed(1)}</span>
+      </div>
+    </div>
+  </div>`;
+}
+
+function renderGems() {
+  // gems: games outside top 10 with best avg position (low avg = placed high)
+  const tail = GAMES.filter(g => g.pos > 10).sort((a,b) => a.avg - b.avg);
+  if (!tail.length) return '';
+  // show up to 2 gems
+  return tail.slice(0, 2).map(g => `
+  <div class="gem-card" style="margin-bottom:8px">
+    <div class="gem-icon">💎</div>
+    <div>
+      <div class="gem-tag">Joya oculta</div>
+      <div class="gem-name"><a href="https://boardgamegeek.com/boardgame/${g.id}" target="_blank" rel="noopener">${g.name} (${g.year})</a></div>
+      <div class="gem-sub">${g.mentions} mención${g.mentions!==1?'es':''} · posición promedio ${g.avg.toFixed(1)} en los votos donde aparece</div>
+    </div>
+  </div>`).join('');
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+  document.getElementById('rank-list').innerHTML = GAMES.slice(0,10).map(renderItem).join('');
+  document.getElementById('gems').innerHTML = renderGems();
+});
+</script>
+
+<!-- HERO -->
+<header class="hero">
+  <div class="logo">🎲</div>
+  <div class="eyebrow">El Clú del Boardgame</div>
+  <h1>Ranking <em>del Clú</em></h1>
+  <div class="hero-meta">
+    <span style="font-weight:600;color:var(--text)">Edición 2025</span>
+    <span class="sep">·</span>
+    <span class="badge-open"><span class="dot-live"></span>Votación abierta</span>
+    <span class="sep">·</span>
+    <span>18 votos recibidos</span>
+  </div>
+</header>
+
+<!-- STATS BAR -->
+<div class="stats-bar">
+  <div class="stats-row">
+    <div class="stat"><span class="stat-n">15</span><span class="stat-l">Juegos nominados</span></div>
+    <div class="stat"><span class="stat-n">18</span><span class="stat-l">Votos recibidos</span></div>
+    <div class="stat"><span class="stat-n">18</span><span class="stat-l">Votantes</span></div>
+  </div>
+</div>
+
+<!-- RANKING -->
+<section class="ranking-section">
+  <div class="wrap">
+    <div class="section-tag">Edición 2025</div>
+    <div class="section-h">Top 10 del Club</div>
+    <p class="section-sub">Actualizado al 2025-04-19 · Solo juegos con 3+ menciones · Sistema de puntos F1</p>
+    <div class="rank-list" id="rank-list"></div>
+  </div>
+</section>
+
+<!-- HIDDEN GEMS -->
+<section class="gems-section">
+  <div class="wrap" id="gems"></div>
+</section>
+
+<!-- CÓMO FUNCIONA -->
+<section class="how-section">
+  <div class="wrap">
+    <div class="section-tag" style="margin-bottom:6px">Metodología</div>
+    <div class="section-h" style="margin-bottom:4px">¿Cómo funciona?</div>
+    <p class="section-sub">Simple, transparente y apasionado — como los juegos que elegimos.</p>
+    <div class="how-grid">
+      <div class="how-card">
+        <div class="how-n">01</div>
+        <h3>Votá tu top 10</h3>
+        <p>Cada miembro elige sus 10 juegos favoritos en orden a través del bot de Telegram.</p>
+      </div>
+      <div class="how-card">
+        <div class="how-n">02</div>
+        <h3>Puntaje estilo F1</h3>
+        <p>1° lugar = 25 pts, 2° = 18, 3° = 15… hasta 10° con 1 pt. Premia la pasión.</p>
+      </div>
+      <div class="how-card">
+        <div class="how-n">03</div>
+        <h3>Ranking del club</h3>
+        <p>Se agregan todos los votos. Solo juegos con 3+ menciones entran al top.</p>
+      </div>
+    </div>
+    <div class="f1-label">Escala de puntos</div>
+    <div class="f1-row">
+      <div class="f1-cell hi"><div class="f1-p">1°</div><div class="f1-v">25</div></div>
+      <div class="f1-cell"><div class="f1-p">2°</div><div class="f1-v">18</div></div>
+      <div class="f1-cell"><div class="f1-p">3°</div><div class="f1-v">15</div></div>
+      <div class="f1-cell"><div class="f1-p">4°</div><div class="f1-v">12</div></div>
+      <div class="f1-cell"><div class="f1-p">5°</div><div class="f1-v">10</div></div>
+      <div class="f1-cell"><div class="f1-p">6°</div><div class="f1-v">8</div></div>
+      <div class="f1-cell"><div class="f1-p">7°</div><div class="f1-v">6</div></div>
+      <div class="f1-cell"><div class="f1-p">8°</div><div class="f1-v">4</div></div>
+      <div class="f1-cell"><div class="f1-p">9°</div><div class="f1-v">2</div></div>
+      <div class="f1-cell"><div class="f1-p">10°</div><div class="f1-v">1</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-btns">
+    <a href="https://boardgamegeek.com" target="_blank" rel="noopener" class="btn-bgg">
+      <img src="img/powered_by_bgg.png" alt="Powered by BoardGameGeek" height="26">
+    </a>
+    <a href="https://t.me/ranking_clu_bot" target="_blank" rel="noopener" class="btn-tg">
+      ✈ Votá con @ranking_clu_bot
+    </a>
+  </div>
+  <p class="footer-copy">
+    Ranking del Clú · El Clú del Boardgame · Argentina ·
+    Datos por <a href="https://boardgamegeek.com" target="_blank" rel="noopener">BoardGameGeek</a>
+  </p>
+</footer>
+
+</body>
+</html>
