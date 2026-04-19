@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ranking del Clú — Top Juegos de Mesa</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg:        #0f1117;
+      --surface:   #1a1d2e;
+      --gold:      #e8c547;
+      --gold-dim:  #b8963a;
+      --text:      #e8eaf0;
+      --muted:     #8b8fa8;
+      --accent:    #4f7cff;
+      --radius:    12px;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+    }
+
+    /* ── HERO ── */
+    .hero {
+      background: linear-gradient(145deg, #0f1117 0%, #1a1d2e 60%, #0d1a3a 100%);
+      border-bottom: 1px solid #ffffff12;
+      padding: 80px 24px 70px;
+      text-align: center;
+    }
+    .hero-badge {
+      display: inline-block;
+      background: var(--gold);
+      color: #000;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      padding: 4px 14px;
+      border-radius: 20px;
+      margin-bottom: 24px;
+    }
+    .hero h1 {
+      font-size: clamp(2rem, 6vw, 3.6rem);
+      font-weight: 800;
+      letter-spacing: -1px;
+      margin-bottom: 8px;
+    }
+    .hero h1 span { color: var(--gold); }
+    .hero .subtitle {
+      font-size: clamp(1rem, 2.5vw, 1.25rem);
+      color: var(--muted);
+      max-width: 520px;
+      margin: 0 auto 40px;
+    }
+    .hero-stat-row {
+      display: flex;
+      justify-content: center;
+      gap: 40px;
+      flex-wrap: wrap;
+    }
+    .hero-stat { text-align: center; }
+    .hero-stat .num {
+      display: block;
+      font-size: 2rem;
+      font-weight: 800;
+      color: var(--gold);
+    }
+    .hero-stat .label {
+      font-size: 0.78rem;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: var(--muted);
+    }
+
+    /* ── SECCIÓN GENÉRICA ── */
+    section { padding: 64px 24px; }
+    .container { max-width: 860px; margin: 0 auto; }
+    .section-title {
+      font-size: 1.5rem;
+      font-weight: 700;
+      margin-bottom: 8px;
+    }
+    .section-sub {
+      color: var(--muted);
+      margin-bottom: 40px;
+      font-size: 0.95rem;
+    }
+
+    /* ── CÓMO FUNCIONA ── */
+    .steps { background: var(--surface); }
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 20px;
+    }
+    .card {
+      background: var(--bg);
+      border: 1px solid #ffffff10;
+      border-radius: var(--radius);
+      padding: 28px 24px;
+    }
+    .card-icon { font-size: 2rem; margin-bottom: 14px; }
+    .card h3 { font-size: 1rem; font-weight: 700; margin-bottom: 8px; }
+    .card p  { font-size: 0.88rem; color: var(--muted); }
+
+    /* ── TABLA F1 ── */
+    .scoring { background: var(--bg); }
+    .f1-grid {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 10px;
+      max-width: 500px;
+    }
+    @media (max-width: 480px) {
+      .f1-grid { grid-template-columns: repeat(5, 1fr); gap: 6px; }
+    }
+    .f1-cell {
+      background: var(--surface);
+      border: 1px solid #ffffff10;
+      border-radius: 8px;
+      padding: 14px 8px;
+      text-align: center;
+    }
+    .f1-cell.gold { border-color: var(--gold); }
+    .f1-cell .pos { font-size: 0.7rem; color: var(--muted); margin-bottom: 4px; }
+    .f1-cell .pts {
+      font-size: 1.2rem;
+      font-weight: 800;
+      color: var(--text);
+    }
+    .f1-cell.gold .pts { color: var(--gold); }
+
+    /* ── COMING SOON ── */
+    .coming-soon { background: var(--surface); text-align: center; }
+    .soon-box {
+      display: inline-block;
+      border: 2px solid var(--gold);
+      border-radius: var(--radius);
+      padding: 48px 60px;
+      max-width: 460px;
+    }
+    .soon-year {
+      font-size: 5rem;
+      font-weight: 900;
+      color: var(--gold);
+      letter-spacing: -4px;
+      line-height: 1;
+      margin-bottom: 12px;
+    }
+    .soon-label {
+      font-size: 1.1rem;
+      font-weight: 600;
+      margin-bottom: 8px;
+    }
+    .soon-sub { font-size: 0.88rem; color: var(--muted); }
+    .pulse {
+      display: inline-block;
+      width: 10px; height: 10px;
+      background: #4caf50;
+      border-radius: 50%;
+      margin-right: 6px;
+      animation: pulse 1.8s ease-in-out infinite;
+      vertical-align: middle;
+    }
+    @keyframes pulse {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50%       { opacity: 0.4; transform: scale(0.7); }
+    }
+
+    /* ── BGG BADGE ── */
+    .bgg-section { background: var(--bg); text-align: center; padding: 40px 24px; }
+    .bgg-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      background: var(--surface);
+      border: 1px solid #ffffff15;
+      border-radius: 8px;
+      padding: 12px 22px;
+      text-decoration: none;
+      color: var(--text);
+      font-size: 0.9rem;
+      font-weight: 600;
+      transition: border-color 0.2s;
+    }
+    .bgg-badge:hover { border-color: var(--gold-dim); }
+    .bgg-logo {
+      font-size: 1.3rem;
+      font-weight: 900;
+      color: var(--gold);
+      font-family: Georgia, serif;
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      background: #0a0c12;
+      border-top: 1px solid #ffffff0a;
+      padding: 28px 24px;
+      text-align: center;
+      font-size: 0.82rem;
+      color: var(--muted);
+    }
+    footer a { color: var(--muted); text-decoration: underline; }
+  </style>
+</head>
+<body>
+
+<!-- HERO -->
+<header class="hero">
+  <div class="hero-badge">Edición 2026</div>
+  <h1>Ranking del <span>Clú</span></h1>
+  <p class="subtitle">El top anual de juegos de mesa votado por los miembros del club</p>
+  <div class="hero-stat-row">
+    <div class="hero-stat">
+      <span class="num">3000+</span>
+      <span class="label">Miembros</span>
+    </div>
+    <div class="hero-stat">
+      <span class="num">Top 10</span>
+      <span class="label">Por miembro</span>
+    </div>
+    <div class="hero-stat">
+      <span class="num">F1</span>
+      <span class="label">Sistema de puntos</span>
+    </div>
+  </div>
+</header>
+
+<!-- CÓMO FUNCIONA -->
+<section class="steps">
+  <div class="container">
+    <div class="section-title">¿Cómo funciona?</div>
+    <p class="section-sub">Un sistema simple e inspirado en las grandes listas de la comunidad boardgamer.</p>
+    <div class="cards">
+      <div class="card">
+        <div class="card-icon">🗳️</div>
+        <h3>Votá tu top 10</h3>
+        <p>Cada miembro del club elige sus 10 juegos favoritos del año, en orden de preferencia, a través del bot de Telegram.</p>
+      </div>
+      <div class="card">
+        <div class="card-icon">🏎️</div>
+        <h3>Puntaje estilo F1</h3>
+        <p>El 1° lugar otorga 25 puntos, el 2° 18, el 3° 15… hasta el 10° con 1 punto. Un sistema que premia la pasión.</p>
+      </div>
+      <div class="card">
+        <div class="card-icon">🏆</div>
+        <h3>Ranking del club</h3>
+        <p>Se agregan todos los votos y se publica el ranking definitivo. Solo juegos con 3 o más menciones califican.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PUNTAJE F1 -->
+<section class="scoring">
+  <div class="container">
+    <div class="section-title">Sistema de puntuación</div>
+    <p class="section-sub">Inspirado en el People's Choice Top 200 del 1-Player Guild de BGG.</p>
+    <div class="f1-grid">
+      <div class="f1-cell gold"><div class="pos">1°</div><div class="pts">25</div></div>
+      <div class="f1-cell"><div class="pos">2°</div><div class="pts">18</div></div>
+      <div class="f1-cell"><div class="pos">3°</div><div class="pts">15</div></div>
+      <div class="f1-cell"><div class="pos">4°</div><div class="pts">12</div></div>
+      <div class="f1-cell"><div class="pos">5°</div><div class="pts">10</div></div>
+      <div class="f1-cell"><div class="pos">6°</div><div class="pts">8</div></div>
+      <div class="f1-cell"><div class="pos">7°</div><div class="pts">6</div></div>
+      <div class="f1-cell"><div class="pos">8°</div><div class="pts">4</div></div>
+      <div class="f1-cell"><div class="pos">9°</div><div class="pts">2</div></div>
+      <div class="f1-cell"><div class="pos">10°</div><div class="pts">1</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- COMING SOON -->
+<section class="coming-soon">
+  <div class="container">
+    <div class="soon-box">
+      <div class="soon-year">2026</div>
+      <div class="soon-label">Ranking en preparación</div>
+      <p class="soon-sub">
+        <span class="pulse"></span>Votación abierta — el ranking se publicará aquí cuando haya suficientes votos
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- BGG BADGE -->
+<div class="bgg-section">
+  <a href="https://boardgamegeek.com" target="_blank" rel="noopener" class="bgg-badge">
+    <span class="bgg-logo">BGG</span>
+    <span>Powered by BoardGameGeek</span>
+  </a>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <p>Ranking del Clú &mdash; Proyecto no-comercial &middot; Club privado de juegos de mesa</p>
+  <p style="margin-top:6px">Los datos de juegos provienen de <a href="https://boardgamegeek.com" target="_blank" rel="noopener">BoardGameGeek</a> bajo uso no-comercial.</p>
+</footer>
+
+</body>
+</html>
