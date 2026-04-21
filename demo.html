@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="es" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>El Clú del Boardgame | Buenos Aires, Argentina</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&family=Bebas+Neue&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: { 
+                        sans: ['Inter', 'sans-serif'],
+                        display: ['Bebas Neue', 'cursive']
+                    },
+                    colors: {
+                        deepblack: '#080808',
+                        proftteal: '#14B8A6',
+                        luxpurp: '#7C3AED',
+                        hitred: '#EF4444',
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body { font-family: 'Inter', sans-serif; background-color: #080808; color: #E5E5E5; }
+        .bg-glass { background: rgba(8, 8, 8, 0.9); backdrop-filter: blur(12px); }
+        .hero-gradient { background: radial-gradient(circle at center, #0f2a27 0%, #080808 80%); }
+        .card-universe { 
+            background: linear-gradient(145deg, rgba(255,255,255,0.05) 0%, rgba(255,255,255,0.01) 100%);
+            border: 1px solid rgba(255,255,255,0.1);
+            transition: all 0.3s ease;
+        }
+        .card-universe:hover { border-color: #14B8A6; transform: translateY(-5px); }
+        .ranking-split { background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.05); }
+        .logo-container {
+            width: 48px;
+            height: 48px;
+            background: #111;
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 8px;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .logo-img { 
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            filter: drop-shadow(0 0 8px rgba(20, 184, 166, 0.3)); 
+        }
+    </style>
+</head>
+<body class="antialiased overflow-x-hidden">
+
+    <nav class="fixed w-full z-50 bg-glass border-b border-white/5">
+        <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
+            <div class="flex items-center space-x-3">
+                <!-- CONTENEDOR DE LOGO CON FALLBACK -->
+                <div class="logo-container">
+                    <img src="logo_clu.png" alt="Logo El Clú" class="logo-img" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                    <div class="hidden flex items-center justify-center w-full h-full bg-proftteal/20 text-proftteal font-display text-xl italic">EC</div>
+                </div>
+                <div class="flex flex-col leading-none">
+                    <span class="font-display text-2xl tracking-tighter uppercase italic">El Clú<span class="text-proftteal">.</span></span>
+                    <span class="text-[9px] uppercase tracking-[0.2em] font-bold text-gray-500">del Boardgame</span>
+                </div>
+            </div>
+            <div class="hidden md:flex space-x-8 text-[10px] font-bold uppercase tracking-[0.3em] items-center">
+                <a href="#universo" class="hover:text-proftteal transition">Universo</a>
+                <a href="#rankings" class="hover:text-proftteal transition">Rankings</a>
+                <a href="#reviewers" class="hover:text-proftteal transition">Reviewers</a>
+                <a href="#jornadas" class="hover:text-proftteal transition">Jornadas</a>
+                <a href="https://t.me/+cW4COuFd_nIxNjEx" target="_blank" class="bg-proftteal text-black px-5 py-2 rounded shadow-lg shadow-proftteal/20 text-[10px] font-bold uppercase tracking-widest hover:scale-105 transition">Entrar</a>
+            </div>
+        </div>
+    </nav>
+
+    <section id="home" class="relative min-h-screen flex items-center justify-center hero-gradient pt-20">
+        <div class="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/dark-circles.png')] opacity-10"></div>
+        <div class="relative z-10 text-center px-6 max-w-4xl flex flex-col items-center">
+            <div class="inline-block px-4 py-1 border border-proftteal/30 rounded-full text-proftteal text-xs font-bold tracking-widest uppercase mb-6">
+                Comunidad Lúdica
+            </div>
+            <h1 class="text-6xl md:text-8xl font-black mb-8 tracking-tighter uppercase leading-none italic">Tu mesa de juego<br><span class="text-proftteal">en Buenos Aires.</span></h1>
+            <p class="max-w-2xl mx-auto text-gray-400 text-lg md:text-xl mb-12 font-light leading-relaxed">
+                Somos "El Clú del Boardgame", la comunidad más activa de Argentina. Un universo lúdico con debates picantes, mercado exclusivo y organización de juntadas para que tengas el hobby más cerca tuyo...
+            </p>
+            <div class="flex flex-col md:flex-row gap-4 justify-center w-full sm:w-auto">
+                <a href="#universo" class="bg-white text-black px-10 py-4 rounded font-bold uppercase tracking-widest hover:bg-proftteal transition duration-300">Explorar Universo</a>
+                <a href="#rankings" class="border border-white/20 px-10 py-4 rounded font-bold uppercase tracking-widest hover:bg-white hover:text-black transition duration-300">Ver Rankings</a>
+            </div>
+        </div>
+    </section>
+
+    <section id="universo" class="py-32 px-6 bg-deepblack">
+        <div class="max-w-7xl mx-auto grid md:grid-cols-3 gap-8">
+            <div class="card-universe p-10 rounded-2xl group flex flex-col">
+                <div class="w-14 h-14 bg-proftteal/10 rounded-lg flex items-center justify-center mb-6 transition-all group-hover:scale-110">
+                    <i class="fas fa-users text-3xl text-proftteal"></i>
+                </div>
+                <h3 class="font-display text-4xl mb-4 uppercase italic">Comunidad</h3>
+                <p class="text-gray-500 text-sm leading-relaxed mb-6 flex-grow">El Hub principal en Telegram. Coordinamos partidas, compartimos noticias y crecemos como jugadores.</p>
+                <a href="https://t.me/+cW4COuFd_nIxNjEx" target="_blank" class="mt-auto text-[10px] font-bold uppercase tracking-widest text-proftteal">Telegram Hub →</a>
+            </div>
+            <div class="card-universe p-10 rounded-2xl group flex flex-col">
+                <div class="w-14 h-14 bg-luxpurp/10 rounded-lg flex items-center justify-center mb-6 transition-all group-hover:scale-110">
+                    <i class="fas fa-shopping-cart text-3xl text-luxpurp"></i>
+                </div>
+                <h3 class="font-display text-4xl mb-4 uppercase italic">Mercado</h3>
+                <p class="text-gray-500 text-sm leading-relaxed mb-6 flex-grow">Compra, venta y canje de juegos con confianza. El marketplace exclusivo para miembros del Clú.</p>
+                <a href="#" target="_blank" class="mt-auto text-[10px] font-bold uppercase tracking-widest text-luxpurp">Ver Catálogo →</a>
+            </div>
+            <div class="card-universe p-10 rounded-2xl group flex flex-col">
+                <div class="w-14 h-14 bg-yellow-500/10 rounded-lg flex items-center justify-center mb-6 transition-all group-hover:scale-110">
+                    <i class="fas fa-couch text-3xl text-yellow-500"></i>
+                </div>
+                <h3 class="font-display text-4xl mb-4 uppercase italic">Mobiliario</h3>
+                <p class="text-gray-500 text-sm leading-relaxed mb-6 flex-grow">Mesas de juego personalizadas y estanterías KALLAX a medida. Eleva tu setup.</p>
+                <a href="#" target="_blank" class="mt-auto text-[10px] font-bold uppercase tracking-widest text-yellow-500">Tienda Deco →</a>
+            </div>
+        </div>
+    </section>
+
+    <section id="rankings" class="py-32 px-6 bg-[#0a0a0a] border-y border-white/5 relative">
+        <div class="max-w-7xl mx-auto">
+            <div class="text-center mb-20 relative z-10">
+                <h2 class="font-display text-6xl uppercase italic mb-4">La Voz del Clú</h2>
+                <p class="text-gray-500 uppercase tracking-widest text-xs font-bold">Votaciones anuales de la comunidad</p>
+                <div class="absolute -bottom-1 left-1/2 -translate-x-1/2 h-1 w-20 bg-proftteal z-0"></div>
+            </div>
+            
+            <div class="grid lg:grid-cols-2 gap-10">
+                <div class="ranking-split p-10 rounded-3xl relative overflow-hidden group border border-proftteal/20 bg-deepblack/40">
+                    <div class="relative z-10 flex flex-col h-full">
+                        <h3 class="font-display text-5xl mb-2 italic uppercase">Top 100 <span class="text-proftteal">Anual</span></h3>
+                        <p class="text-gray-500 text-sm mb-8 leading-relaxed flex-grow">
+                            Cada miembro elige su **Top 10 personal**. Aplicamos el sistema de puntos **F1 (25, 18, 15...)** para consolidar el ranking definitivo de los 100 mejores juegos del año.
+                        </p>
+                        <div class="space-y-3 mb-10 opacity-60 group-hover:opacity-100 transition">
+                            <div class="flex justify-between border-b border-white/5 pb-2">
+                                <span class="text-[11px] font-bold uppercase">1. Brass: Birmingham</span>
+                                <span class="font-display text-3xl text-proftteal italic">642 <span class="text-xs uppercase tracking-widest text-gray-500 font-bold">pts</span></span>
+                            </div>
+                        </div>
+                        <a href="#" class="inline-block border border-proftteal text-proftteal px-8 py-3 rounded font-bold uppercase text-[10px] tracking-widest hover:bg-proftteal hover:text-black transition text-center w-full">Ver Ranking Completo</a>
+                    </div>
+                </div>
+
+                <div class="ranking-split p-10 rounded-3xl relative overflow-hidden group border border-luxpurp/20 bg-deepblack/40 hover:bg-luxpurp/5">
+                    <div class="relative z-10 flex flex-col h-full">
+                        <h3 class="font-display text-5xl mb-2 italic uppercase">Elección <span class="text-luxpurp">BOTY</span></h3>
+                        <p class="text-gray-500 text-sm mb-8 leading-relaxed flex-grow">
+                            El **Board Game of the Year**. Votamos el mejor lanzamiento absoluto y por categorías estratégicas: Mejor Euro, Mejor Ameritrash, Mejor Arte y más.
+                        </p>
+                        <div class="bg-luxpurp/10 p-6 rounded-xl mb-10 text-center border border-luxpurp/20 group-hover:scale-[1.03] transition-transform">
+                            <span class="text-[9px] uppercase tracking-widest font-black text-luxpurp block mb-2">Ganador Absoluto 2026</span>
+                            <h4 class="font-display text-4xl text-white">ARCS</h4>
+                            <p class="text-[10px] text-gray-500 uppercase mt-1">Leder Games</p>
+                        </div>
+                        <a href="#" class="inline-block border border-luxpurp text-luxpurp px-8 py-3 rounded font-bold uppercase text-[10px] tracking-widest hover:bg-luxpurp hover:text-white transition text-center w-full">Ver Resultados Categorías</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECCIÓN: REVIEWERS -->
+    <section id="reviewers" class="py-32 px-6 bg-deepblack">
+        <div class="max-w-7xl mx-auto">
+            <div class="mb-16">
+                <h2 class="font-display text-6xl uppercase italic mb-2">Reviewers</h2>
+                <p class="text-gray-500 uppercase tracking-widest text-xs font-bold">Análisis y lecciones de nuestra comunidad</p>
+                <div class="w-20 h-1 bg-proftteal mt-4"></div>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="card-universe p-8 rounded-2xl group">
+                    <div class="w-12 h-12 bg-hitred/10 rounded flex items-center justify-center mb-6">
+                        <i class="fab fa-youtube text-2xl text-hitred"></i>
+                    </div>
+                    <h4 class="font-bold uppercase text-lg mb-2">Lecciones del Boty</h4>
+                    <p class="text-gray-500 text-sm mb-6">Tutoriales profundos y reglas explicadas para que no pierdas tiempo leyendo manuales.</p>
+                    <a href="#" class="text-[10px] font-bold uppercase tracking-widest text-white border-b border-white/20 pb-1 hover:border-proftteal transition">Ver Canal</a>
+                </div>
+                <div class="card-universe p-8 rounded-2xl group">
+                    <div class="w-12 h-12 bg-pink-500/10 rounded flex items-center justify-center mb-6">
+                        <i class="fab fa-instagram text-2xl text-pink-500"></i>
+                    </div>
+                    <h4 class="font-bold uppercase text-lg mb-2">Instagram Clú</h4>
+                    <p class="text-gray-500 text-sm mb-6">Fotos de las mesas, reels de unboxing y el día a día de nuestras juntadas lúdicas.</p>
+                    <a href="#" class="text-[10px] font-bold uppercase tracking-widest text-white border-b border-white/20 pb-1 hover:border-proftteal transition">Seguir</a>
+                </div>
+                <div class="card-universe p-8 rounded-2xl group">
+                    <div class="w-12 h-12 bg-white/10 rounded flex items-center justify-center mb-6">
+                        <i class="fab fa-tiktok text-2xl text-white"></i>
+                    </div>
+                    <h4 class="font-bold uppercase text-lg mb-2">TikTok Shorts</h4>
+                    <p class="text-gray-500 text-sm mb-6">Reseñas en 60 segundos y momentos divertidos de las partidas más intensas.</p>
+                    <a href="#" class="text-[10px] font-bold uppercase tracking-widest text-white border-b border-white/20 pb-1 hover:border-proftteal transition">Ver Shorts</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- JORNADAS SECTION -->
+    <section id="jornadas" class="py-32 px-6 bg-deepblack border-t border-white/5 relative">
+        <div class="max-w-7xl mx-auto flex flex-col lg:flex-row gap-20 items-center">
+            <div class="lg:w-1/2">
+                <span class="text-proftteal font-bold uppercase tracking-widest text-[10px] mb-4 block italic">Servicio para Miembros</span>
+                <h2 class="font-display text-7xl uppercase italic leading-none mb-8">Organiza tu<br><span class="text-proftteal animate-pulse">Jornada.</span></h2>
+                <p class="text-gray-400 text-lg mb-8 leading-relaxed">¿Sin saber qué sacar a mesa? Los grupos de votación del Clú permiten coordinar las próximas partidas mediante nuestro sistema dinámico de puntos.</p>
+                <div class="space-y-6">
+                    <div class="flex gap-4">
+                        <div class="w-8 h-8 rounded bg-proftteal/10 flex items-center justify-center shrink-0 border border-proftteal/20 text-proftteal">
+                            <i class="fas fa-dice text-sm"></i>
+                        </div>
+                        <p class="text-sm text-gray-500"><strong class="text-white uppercase tracking-tighter">Propuestas:</strong> Cada miembro propone de 3 a 5 juegos por semana.</p>
+                    </div>
+                    <div class="flex gap-4">
+                        <div class="w-8 h-8 rounded bg-proftteal/10 flex items-center justify-center shrink-0 border border-proftteal/20 text-proftteal">
+                            <i class="fas fa-poll-h text-sm"></i>
+                        </div>
+                        <p class="text-sm text-gray-400"><strong class="text-white uppercase tracking-tighter">Votación:</strong> El grupo asigna puntos a las opciones del pool.</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="lg:w-1/2 w-full">
+                <div class="bg-[#111] p-8 rounded-3xl border border-white/10 shadow-2xl relative">
+                    <div class="flex justify-between items-center mb-6">
+                        <h4 class="font-black uppercase text-[9px] tracking-[0.3em] text-gray-500 italic">Votación Activa / Grupo Sábado</h4>
+                        <span class="text-hitred text-[9px] font-black uppercase tracking-tighter flex items-center gap-2">
+                            <span class="w-1 h-1 bg-hitred rounded-full animate-ping"></span> Live
+                        </span>
+                    </div>
+                    
+                    <div class="space-y-4">
+                        <div class="p-5 bg-white/5 rounded-2xl border border-white/5 flex justify-between items-center hover:border-proftteal group cursor-pointer">
+                            <div>
+                                <h4 class="font-bold uppercase text-sm group-hover:text-proftteal transition leading-tight">Terraforming Mars</h4>
+                                <p class="text-[9px] text-gray-600 uppercase font-bold">Propuesto por @VaderClu</p>
+                            </div>
+                            <div class="flex items-center gap-4">
+                                <span class="font-display text-4xl text-proftteal transform transition group-hover:scale-110 duration-300">45</span>
+                                <i class="fas fa-plus text-black bg-proftteal w-8 h-8 rounded-lg flex items-center justify-center hover:scale-105 transition hover:bg-white"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="bg-deepblack py-20 px-6 border-t border-white/5">
+        <div class="max-w-7xl mx-auto grid md:grid-cols-4 gap-12">
+            <div class="col-span-1 md:col-span-2">
+                <div class="flex items-center gap-4 mb-6">
+                    <div class="logo-container h-12 w-12">
+                        <img src="logo_clu.jpeg" alt="Logo" class="logo-img" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                        <div class="hidden flex items-center justify-center w-full h-full bg-proftteal/20 text-proftteal font-display text-xl italic">EC</div>
+                    </div>
+                    <div class="flex flex-col leading-none">
+                        <span class="font-display text-3xl tracking-tighter uppercase italic">El Clú<span class="text-proftteal">.</span></span>
+                        <span class="text-[10px] uppercase tracking-[0.2em] font-bold text-gray-500">del Boardgame</span>
+                    </div>
+                </div>
+                <p class="text-gray-500 text-sm max-w-sm leading-relaxed">
+                    La comunidad lúdica más grande de Buenos Aires. Juegos de mesa, estrategia y amigos en un solo lugar.
+                </p>
+            </div>
+            <div>
+                <h5 class="text-white font-bold uppercase text-[10px] tracking-widest mb-6">Navegación</h5>
+                <ul class="space-y-3 text-sm text-gray-500">
+                    <li><a href="#universo" class="hover:text-proftteal transition">Universo</a></li>
+                    <li><a href="#rankings" class="hover:text-proftteal transition">Rankings</a></li>
+                    <li><a href="#reviewers" class="hover:text-proftteal transition">Reviewers</a></li>
+                    <li><a href="#jornadas" class="hover:text-proftteal transition">Jornadas</a></li>
+                </ul>
+            </div>
+            <div>
+                <h5 class="text-white font-bold uppercase text-[10px] tracking-widest mb-6">Contacto</h5>
+                <div class="flex gap-4">
+                    <a href="https://t.me/+cW4COuFd_nIxNjEx" class="w-10 h-10 rounded bg-white/5 flex items-center justify-center hover:bg-proftteal hover:text-black transition">
+                        <i class="fab fa-telegram-plane"></i>
+                    </a>
+                    <a href="#" class="w-10 h-10 rounded bg-white/5 flex items-center justify-center hover:bg-pink-500 transition">
+                        <i class="fab fa-instagram"></i>
+                    </a>
+                </div>
+                <p class="text-[10px] text-gray-600 uppercase mt-6 tracking-widest">© 2024 El Clú del Boardgame</p>
+            </div>
+        </div>
+    </footer>
+
+</body>
+</html>
