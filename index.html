@@ -59,60 +59,98 @@
     .stat-n { display: block; font-size: clamp(1.8rem,4vw,2.4rem); font-weight: 900; letter-spacing: -1.5px; color: var(--green); line-height: 1; margin-bottom: 4px; }
     .stat-l { font-size: 0.62rem; font-weight: 700; text-transform: uppercase; letter-spacing: 2px; color: var(--muted2); }
 
-    /* ── RANKING — single column list ── */
-    .ranking-section { padding: 48px 24px; }
+    /* ── SHARED SECTION LABELS ── */
     .section-tag { font-size: 10px; font-weight: 700; letter-spacing: 3px; text-transform: uppercase; color: var(--green); margin-bottom: 6px; }
     .section-h { font-size: 1.4rem; font-weight: 800; color: var(--white); letter-spacing: -.5px; margin-bottom: 4px; }
     .section-sub { font-size: 0.8rem; color: var(--muted2); margin-bottom: 28px; }
 
-    .rank-list { display: flex; flex-direction: column; gap: 6px; }
+    .bar-wrap { height: 3px; background: var(--border2); border-radius: 2px; overflow: hidden; margin-top: 8px; }
+    .bar-fill { height: 100%; border-radius: 2px; }
+    .chip { font-size: 0.65rem; font-weight: 600; padding: 2px 7px; border-radius: 999px; background: var(--surface2); border: 1px solid var(--border2); color: var(--muted2); white-space: nowrap; }
+
+    /* ── PODIUM — top 3 cards ── */
+    .podium-section { padding: 48px 24px 16px; }
+    .podium-list { display: flex; flex-direction: column; gap: 10px; }
+
+    .podium-card {
+      display: flex; align-items: stretch;
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: var(--r); overflow: hidden;
+      position: relative;
+      transition: border-color .15s;
+    }
+    .podium-card:hover { border-color: var(--border2); }
+    .podium-card.gold   { background: var(--gold-bg);   border-color: var(--gold-br); }
+    .podium-card.silver { background: var(--silver-bg); border-color: var(--silver-br); }
+    .podium-card.bronze { background: var(--bronze-bg); border-color: var(--bronze-br); }
+
+    .podium-card.gold::before   { content:''; position:absolute; left:0; top:0; bottom:0; width:4px; background:var(--gold); }
+    .podium-card.silver::before { content:''; position:absolute; left:0; top:0; bottom:0; width:4px; background:var(--silver); }
+    .podium-card.bronze::before { content:''; position:absolute; left:0; top:0; bottom:0; width:4px; background:var(--bronze); }
+
+    .podium-img-wrap { width: 130px; flex-shrink: 0; background: var(--border); position: relative; }
+    .podium-card.gold .podium-img-wrap { width: 160px; }
+    .podium-img { width: 100%; height: 100%; object-fit: cover; display: block; min-height: 100px; }
+    .podium-img-empty { width: 100%; min-height: 110px; display: flex; align-items: center; justify-content: center; font-size: 2.5rem; color: var(--muted); }
+
+    .podium-body { flex: 1; padding: 16px 18px 16px 22px; display: flex; flex-direction: column; justify-content: center; min-width: 0; }
+
+    .podium-badge { display: flex; align-items: center; gap: 6px; margin-bottom: 6px; }
+    .podium-medal { font-size: 1.2rem; line-height: 1; flex-shrink: 0; }
+    .podium-label { font-size: 0.6rem; font-weight: 800; letter-spacing: 2.5px; text-transform: uppercase; }
+    .gold   .podium-label { color: var(--gold); }
+    .silver .podium-label { color: var(--silver); }
+    .bronze .podium-label { color: var(--bronze); }
+
+    .podium-name { font-size: 1.05rem; font-weight: 800; color: var(--white); display: block; line-height: 1.25; margin-bottom: 2px; }
+    .podium-card.gold .podium-name { font-size: 1.2rem; }
+    .podium-name:hover { color: var(--green); }
+    .podium-year { font-size: 0.68rem; color: var(--muted2); margin-bottom: 10px; }
+
+    .podium-stats { display: flex; align-items: baseline; gap: 4px; flex-wrap: wrap; }
+    .podium-pts { font-size: 1.6rem; font-weight: 900; letter-spacing: -1.5px; line-height: 1; }
+    .podium-card.gold .podium-pts { font-size: 2rem; }
+    .gold   .podium-pts { color: var(--gold); }
+    .silver .podium-pts { color: var(--silver); }
+    .bronze .podium-pts { color: var(--bronze); }
+    .podium-pts-lbl { font-size: 0.58rem; text-transform: uppercase; letter-spacing: 1px; color: var(--muted); margin-right: 8px; }
+    .podium-chips { display: flex; gap: 4px; flex-wrap: wrap; }
+    .gold   .bar-fill { background: linear-gradient(90deg, #7a5010, var(--gold)); }
+    .silver .bar-fill { background: linear-gradient(90deg, #444, var(--silver)); }
+    .bronze .bar-fill { background: linear-gradient(90deg, #5a3010, var(--bronze)); }
+
+    /* ── RANKING — positions 4–10 ── */
+    .ranking-section { padding: 16px 24px 48px; border-top: 1px solid var(--border); }
+    .section-h-sm { font-size: 1.1rem; font-weight: 800; color: var(--white); letter-spacing: -.3px; margin-bottom: 4px; }
+
+    .rank-list { display: flex; flex-direction: column; gap: 5px; }
 
     .rank-item {
-      display: flex; align-items: center; gap: 16px;
+      display: flex; align-items: center; gap: 14px;
       background: var(--surface); border: 1px solid var(--border);
-      border-radius: var(--r); padding: 14px 18px;
+      border-radius: var(--r); padding: 11px 16px;
       transition: border-color .15s;
-      position: relative; overflow: hidden;
     }
     .rank-item:hover { border-color: var(--border2); }
-    .rank-item.g1 { background: var(--gold-bg);   border-color: var(--gold-br); }
-    .rank-item.g2 { background: var(--silver-bg); border-color: var(--silver-br); }
-    .rank-item.g3 { background: var(--bronze-bg); border-color: var(--bronze-br); }
-
-    .rank-item.g1::before { content:''; position:absolute; left:0; top:0; bottom:0; width:3px; background:var(--gold); border-radius:var(--r) 0 0 var(--r); }
-    .rank-item.g2::before { content:''; position:absolute; left:0; top:0; bottom:0; width:3px; background:var(--silver); border-radius:var(--r) 0 0 var(--r); }
-    .rank-item.g3::before { content:''; position:absolute; left:0; top:0; bottom:0; width:3px; background:var(--bronze); border-radius:var(--r) 0 0 var(--r); }
 
     .rank-pos {
-      font-size: 1.6rem; font-weight: 900; letter-spacing: -1px;
-      min-width: 38px; text-align: center; flex-shrink: 0; line-height: 1;
+      font-size: 1.1rem; font-weight: 900; letter-spacing: -0.5px;
+      min-width: 28px; text-align: center; flex-shrink: 0; line-height: 1;
       color: var(--muted);
     }
-    .g1 .rank-pos { color: var(--gold); }
-    .g2 .rank-pos { color: var(--silver); }
-    .g3 .rank-pos { color: var(--bronze); }
-
-    .rank-thumb { width: 64px; height: 64px; border-radius: 7px; object-fit: cover; flex-shrink: 0; background: var(--border); }
-    .rank-thumb-empty { width: 64px; height: 64px; border-radius: 7px; flex-shrink: 0; background: var(--border); display: flex; align-items: center; justify-content: center; font-size: 1.4rem; color: var(--muted); }
+    .rank-thumb { width: 52px; height: 52px; border-radius: 6px; object-fit: cover; flex-shrink: 0; background: var(--border); }
+    .rank-thumb-empty { width: 52px; height: 52px; border-radius: 6px; flex-shrink: 0; background: var(--border); display: flex; align-items: center; justify-content: center; font-size: 1.2rem; color: var(--muted); }
 
     .rank-info { flex: 1; min-width: 0; }
-    .rank-name { font-size: 0.97rem; font-weight: 700; color: var(--white); display: block; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; margin-bottom: 2px; }
+    .rank-name { font-size: 0.92rem; font-weight: 700; color: var(--white); display: block; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; margin-bottom: 2px; }
     .rank-name:hover { color: var(--green); }
-    .rank-year { font-size: 0.7rem; color: var(--muted2); margin-bottom: 8px; }
-
-    .bar-wrap { height: 3px; background: var(--border2); border-radius: 2px; overflow: hidden; }
-    .bar-fill { height: 100%; border-radius: 2px; }
-    .g1 .bar-fill { background: linear-gradient(90deg, #7a5010, var(--gold)); }
-    .g2 .bar-fill { background: linear-gradient(90deg, #444, var(--silver)); }
-    .g3 .bar-fill { background: linear-gradient(90deg, #5a3010, var(--bronze)); }
-    .rank-item:not(.g1):not(.g2):not(.g3) .bar-fill { background: linear-gradient(90deg, var(--green-d), var(--green)); }
+    .rank-year { font-size: 0.68rem; color: var(--muted2); margin-bottom: 6px; }
+    .rank-item .bar-fill { background: linear-gradient(90deg, var(--green-d), var(--green)); }
 
     .rank-right { flex-shrink: 0; text-align: right; }
-    .rank-pts { font-size: 1.5rem; font-weight: 900; letter-spacing: -1px; color: var(--white); display: block; line-height: 1; }
-    .g1 .rank-pts { color: var(--gold); }
+    .rank-pts { font-size: 1.3rem; font-weight: 900; letter-spacing: -1px; color: var(--white); display: block; line-height: 1; }
     .rank-pts-lbl { font-size: 0.58rem; text-transform: uppercase; letter-spacing: 1px; color: var(--muted); }
-    .rank-chips { display: flex; gap: 4px; justify-content: flex-end; margin-top: 6px; flex-wrap: wrap; }
-    .chip { font-size: 0.65rem; font-weight: 600; padding: 2px 7px; border-radius: 999px; background: var(--surface2); border: 1px solid var(--border2); color: var(--muted2); white-space: nowrap; }
+    .rank-chips { display: flex; gap: 4px; justify-content: flex-end; margin-top: 5px; flex-wrap: wrap; }
 
     /* ── EXTENDED RANKING (11+) ── */
     .extended-section { padding: 0 24px 48px; border-top: 1px solid var(--border); padding-top: 0; }
@@ -215,68 +253,93 @@
 </div>
 
 
-<!-- TOP 10 -->
-<section class="ranking-section">
+<!-- TOP 3 PODIUM -->
+<section class="podium-section">
   <div class="wrap">
     <div class="section-tag">Edición 2026</div>
     <div class="section-h">TEST - Ranking del Clú 2026</div>
-    <p class="section-sub">Actualizado al 2026-04-19 · Solo juegos con 3+ menciones · Sistema de puntos F1</p>
+    <p class="section-sub">Actualizado al 2026-04-28 · Solo juegos con 3+ menciones · Sistema de puntos F1</p>
 
-    <div class="rank-list">
-      <div class="rank-item g1">
-        <div class="rank-pos">1</div>
-          <div class="rank-thumb-empty">🎲</div>
-        <div class="rank-info">
-          <a class="rank-name" href="https://boardgamegeek.com/boardgame/397598" target="_blank" rel="noopener">Dune: Imperium – Uprising</a>
-          <div class="rank-year">2023</div>
+    <div class="podium-list">
+      <div class="podium-card gold">
+        <div class="podium-img-wrap">
+            <img class="podium-img" src="https://cf.geekdo-images.com/UVUkjMV_Q2paVUIUP30Vvw__small/img/H6qmxJrRFjtOAPZOfDoZ480-46I=/fit-in/200x150/filters:strip_icc()/pic7664424.jpg" alt="Dune: Imperium – Uprising" loading="lazy" referrerpolicy="no-referrer">
+        </div>
+        <div class="podium-body">
+          <div class="podium-badge">
+            <span class="podium-medal">🥇</span>
+            <span class="podium-label">Oro · 1° lugar</span>
+          </div>
+          <a class="podium-name" href="https://boardgamegeek.com/boardgame/397598" target="_blank" rel="noopener">Dune: Imperium – Uprising</a>
+          <div class="podium-year">2023</div>
+          <div class="podium-stats">
+            <span class="podium-pts">74</span>
+            <span class="podium-pts-lbl">pts</span>
+            <div class="podium-chips">
+                <span class="chip">5/15 votantes</span>
+              <span class="chip">⌀ 3.8</span>
+            </div>
+          </div>
           <div class="bar-wrap"><div class="bar-fill" style="width:100.0%"></div></div>
         </div>
-        <div class="rank-right">
-          <span class="rank-pts">74</span>
-          <span class="rank-pts-lbl">pts</span>
-          <div class="rank-chips">
-              <span class="chip">5/15 votantes</span>
-            <span class="chip">⌀ 3.8</span>
-          </div>
-        </div>
       </div>
-      <div class="rank-item g2">
-        <div class="rank-pos">2</div>
-          <div class="rank-thumb-empty">🎲</div>
-        <div class="rank-info">
-          <a class="rank-name" href="https://boardgamegeek.com/boardgame/31260" target="_blank" rel="noopener">Agricola</a>
-          <div class="rank-year">2007</div>
+      <div class="podium-card silver">
+        <div class="podium-img-wrap">
+            <img class="podium-img" src="https://cf.geekdo-images.com/3L6ZtOll9W5O6-3-EwSMyw__small/img/TpNF65wCIb1n3EGW18eJJ3MlRMo=/fit-in/200x150/filters:strip_icc()/pic1899157.jpg" alt="Agricola" loading="lazy" referrerpolicy="no-referrer">
+        </div>
+        <div class="podium-body">
+          <div class="podium-badge">
+            <span class="podium-medal">🥈</span>
+            <span class="podium-label">Plata · 2° lugar</span>
+          </div>
+          <a class="podium-name" href="https://boardgamegeek.com/boardgame/31260" target="_blank" rel="noopener">Agricola</a>
+          <div class="podium-year">2007</div>
+          <div class="podium-stats">
+            <span class="podium-pts">68</span>
+            <span class="podium-pts-lbl">pts</span>
+            <div class="podium-chips">
+                <span class="chip">3/15 votantes</span>
+              <span class="chip">⌀ 1.3</span>
+            </div>
+          </div>
           <div class="bar-wrap"><div class="bar-fill" style="width:91.9%"></div></div>
         </div>
-        <div class="rank-right">
-          <span class="rank-pts">68</span>
-          <span class="rank-pts-lbl">pts</span>
-          <div class="rank-chips">
-              <span class="chip">3/15 votantes</span>
-            <span class="chip">⌀ 1.3</span>
-          </div>
-        </div>
       </div>
-      <div class="rank-item g3">
-        <div class="rank-pos">3</div>
-          <div class="rank-thumb-empty">🎲</div>
-        <div class="rank-info">
-          <a class="rank-name" href="https://boardgamegeek.com/boardgame/224517" target="_blank" rel="noopener">Brass: Birmingham</a>
-          <div class="rank-year">2018</div>
+      <div class="podium-card bronze">
+        <div class="podium-img-wrap">
+            <img class="podium-img" src="https://cf.geekdo-images.com/x3zxjr-Vw5iU4yDPg70Jgw__small/img/o18rjEemoWaVru9Y2TyPwuIaRfE=/fit-in/200x150/filters:strip_icc()/pic3490053.jpg" alt="Brass: Birmingham" loading="lazy" referrerpolicy="no-referrer">
+        </div>
+        <div class="podium-body">
+          <div class="podium-badge">
+            <span class="podium-medal">🥉</span>
+            <span class="podium-label">Bronce · 3° lugar</span>
+          </div>
+          <a class="podium-name" href="https://boardgamegeek.com/boardgame/224517" target="_blank" rel="noopener">Brass: Birmingham</a>
+          <div class="podium-year">2018</div>
+          <div class="podium-stats">
+            <span class="podium-pts">67</span>
+            <span class="podium-pts-lbl">pts</span>
+            <div class="podium-chips">
+                <span class="chip">5/15 votantes</span>
+              <span class="chip">⌀ 4.2</span>
+            </div>
+          </div>
           <div class="bar-wrap"><div class="bar-fill" style="width:90.5%"></div></div>
         </div>
-        <div class="rank-right">
-          <span class="rank-pts">67</span>
-          <span class="rank-pts-lbl">pts</span>
-          <div class="rank-chips">
-              <span class="chip">5/15 votantes</span>
-            <span class="chip">⌀ 4.2</span>
-          </div>
-        </div>
       </div>
-      <div class="rank-item ">
+    </div>
+  </div>
+</section>
+
+<!-- POSICIONES 4-10 -->
+<section class="ranking-section">
+  <div class="wrap">
+    <div class="section-tag" style="margin-bottom:6px">Top 10</div>
+    <div class="section-h-sm">Posiciones 4 a 10</div>
+    <div class="rank-list" style="margin-top:12px">
+      <div class="rank-item">
         <div class="rank-pos">4</div>
-          <div class="rank-thumb-empty">🎲</div>
+          <img class="rank-thumb" src="https://cf.geekdo-images.com/sZYp_3BTDGjh2unaZfZmuA__small/img/veqFeP4d_3zNhFc3GNBkV95rBEQ=/fit-in/200x150/filters:strip_icc()/pic2437871.jpg" alt="Gloomhaven" loading="lazy" referrerpolicy="no-referrer">
         <div class="rank-info">
           <a class="rank-name" href="https://boardgamegeek.com/boardgame/174430" target="_blank" rel="noopener">Gloomhaven</a>
           <div class="rank-year">2017</div>
@@ -286,14 +349,14 @@
           <span class="rank-pts">65</span>
           <span class="rank-pts-lbl">pts</span>
           <div class="rank-chips">
-              <span class="chip">5/15 votantes</span>
+              <span class="chip">5/15</span>
             <span class="chip">⌀ 4.4</span>
           </div>
         </div>
       </div>
-      <div class="rank-item ">
+      <div class="rank-item">
         <div class="rank-pos">5</div>
-          <div class="rank-thumb-empty">🎲</div>
+          <img class="rank-thumb" src="https://cf.geekdo-images.com/kjCm4ZvPjIZxS-mYgSPy1g__small/img/aUlIih2_R7P8IYKeyNl2heLQbu8=/fit-in/200x150/filters:strip_icc()/pic7013651.jpg" alt="Spirit Island" loading="lazy" referrerpolicy="no-referrer">
         <div class="rank-info">
           <a class="rank-name" href="https://boardgamegeek.com/boardgame/162886" target="_blank" rel="noopener">Spirit Island</a>
           <div class="rank-year">2017</div>
@@ -303,14 +366,14 @@
           <span class="rank-pts">52</span>
           <span class="rank-pts-lbl">pts</span>
           <div class="rank-chips">
-              <span class="chip">4/15 votantes</span>
+              <span class="chip">4/15</span>
             <span class="chip">⌀ 4.8</span>
           </div>
         </div>
       </div>
-      <div class="rank-item ">
+      <div class="rank-item">
         <div class="rank-pos">6</div>
-          <div class="rank-thumb-empty">🎲</div>
+          <img class="rank-thumb" src="https://cf.geekdo-images.com/9gob752VqEklQFV_gz16hw__small/img/C2GPhkDu7fWK6L64MTOaYVRCgS4=/fit-in/200x150/filters:strip_icc()/pic2585510.png" alt="Trickerion: Legends of Illusion" loading="lazy" referrerpolicy="no-referrer">
         <div class="rank-info">
           <a class="rank-name" href="https://boardgamegeek.com/boardgame/163068" target="_blank" rel="noopener">Trickerion: Legends of Illusion</a>
           <div class="rank-year">2015</div>
@@ -320,14 +383,14 @@
           <span class="rank-pts">50</span>
           <span class="rank-pts-lbl">pts</span>
           <div class="rank-chips">
-              <span class="chip">5/15 votantes</span>
+              <span class="chip">5/15</span>
             <span class="chip">⌀ 6.0</span>
           </div>
         </div>
       </div>
-      <div class="rank-item ">
+      <div class="rank-item">
         <div class="rank-pos">7</div>
-          <div class="rank-thumb-empty">🎲</div>
+          <img class="rank-thumb" src="https://cf.geekdo-images.com/Oh3kHw6lweg6ru71Q16h2Q__small/img/e9XZdQe1ZcPpaq4Gy31OoWBB_V0=/fit-in/200x150/filters:strip_icc()/pic5235277.jpg" alt="Eclipse: Second Dawn for the Galaxy" loading="lazy" referrerpolicy="no-referrer">
         <div class="rank-info">
           <a class="rank-name" href="https://boardgamegeek.com/boardgame/246900" target="_blank" rel="noopener">Eclipse: Second Dawn for the Galaxy</a>
           <div class="rank-year">2020</div>
@@ -337,14 +400,14 @@
           <span class="rank-pts">37</span>
           <span class="rank-pts-lbl">pts</span>
           <div class="rank-chips">
-              <span class="chip">4/15 votantes</span>
+              <span class="chip">4/15</span>
             <span class="chip">⌀ 5.8</span>
           </div>
         </div>
       </div>
-      <div class="rank-item ">
+      <div class="rank-item">
         <div class="rank-pos">8</div>
-          <div class="rank-thumb-empty">🎲</div>
+          <img class="rank-thumb" src="https://cf.geekdo-images.com/4KSmlm59w0GwLIlgDnJDAQ__small/img/P20AxSqNHOEM5qT_doqeeE7JAHQ=/fit-in/200x150/filters:strip_icc()/pic8211747.png" alt="Nemesis" loading="lazy" referrerpolicy="no-referrer">
         <div class="rank-info">
           <a class="rank-name" href="https://boardgamegeek.com/boardgame/167355" target="_blank" rel="noopener">Nemesis</a>
           <div class="rank-year">2018</div>
@@ -354,14 +417,14 @@
           <span class="rank-pts">36</span>
           <span class="rank-pts-lbl">pts</span>
           <div class="rank-chips">
-              <span class="chip">4/15 votantes</span>
+              <span class="chip">4/15</span>
             <span class="chip">⌀ 5.8</span>
           </div>
         </div>
       </div>
-      <div class="rank-item ">
+      <div class="rank-item">
         <div class="rank-pos">9</div>
-          <div class="rank-thumb-empty">🎲</div>
+          <img class="rank-thumb" src="https://cf.geekdo-images.com/6GqH14TJJhza86BX5HCLEQ__small/img/J8SVmGOJXZGxNjkT3xYNQU7Haxg=/fit-in/200x150/filters:strip_icc()/pic5674958.jpg" alt="Lost Ruins of Arnak" loading="lazy" referrerpolicy="no-referrer">
         <div class="rank-info">
           <a class="rank-name" href="https://boardgamegeek.com/boardgame/312484" target="_blank" rel="noopener">Lost Ruins of Arnak</a>
           <div class="rank-year">2020</div>
@@ -371,14 +434,14 @@
           <span class="rank-pts">36</span>
           <span class="rank-pts-lbl">pts</span>
           <div class="rank-chips">
-              <span class="chip">4/15 votantes</span>
+              <span class="chip">4/15</span>
             <span class="chip">⌀ 5.8</span>
           </div>
         </div>
       </div>
-      <div class="rank-item ">
+      <div class="rank-item">
         <div class="rank-pos">10</div>
-          <div class="rank-thumb-empty">🎲</div>
+          <img class="rank-thumb" src="https://cf.geekdo-images.com/fjE7V5LNq31yVEW_yuqI-Q__small/img/Cf_mYxR_VvdjTEPXseSurni2JNI=/fit-in/200x150/filters:strip_icc()/pic3918905.png" alt="Everdell" loading="lazy" referrerpolicy="no-referrer">
         <div class="rank-info">
           <a class="rank-name" href="https://boardgamegeek.com/boardgame/199792" target="_blank" rel="noopener">Everdell</a>
           <div class="rank-year">2018</div>
@@ -388,7 +451,7 @@
           <span class="rank-pts">32</span>
           <span class="rank-pts-lbl">pts</span>
           <div class="rank-chips">
-              <span class="chip">4/15 votantes</span>
+              <span class="chip">4/15</span>
             <span class="chip">⌀ 6.0</span>
           </div>
         </div>
@@ -571,7 +634,7 @@
     Ranking del Clú · El Clú del Boardgame · Argentina<br>
     Datos de juegos provistos por <a href="https://boardgamegeek.com" target="_blank" rel="noopener">BoardGameGeek</a> bajo uso no-comercial.
   </p>
-  <p class="generated-at">Generado el 2026-04-19T22:01:14+00:00</p>
+  <p class="generated-at">Generado el 2026-04-28T21:11:07+00:00</p>
 </footer>
 
 </body>
